@@ -30,7 +30,7 @@ public class PopulationHashmap {
         HashMap<String, Customer> nameMap = new HashMap<>();
 
         try {
-            Scanner informationIndeces = new Scanner(new File("C:\\Users\\danic\\DocumentsAsus\\Part2_AOOP\\AOOP_ProjectPart2\\BankUsers.csv"));
+            Scanner informationIndeces = new Scanner(new File("BankUsers.csv"));
 
             String headers = informationIndeces.nextLine();
             String[] titles = headers.split(",(?=(?:[^\\\"]*\\\"[^\\\"]*\\\")*[^\\\"]*$)");
