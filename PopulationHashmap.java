@@ -104,7 +104,7 @@ public class PopulationHashmap {
      * @param fileName    the name of the CSV file to write to
      * @param customerMap the HashMap containing customer data
      */
-    public void writeToCSV(String fileName, HashMap<String, Customer> customerMap) {
+    public static void writeToCSV(String fileName, HashMap<String, Customer> customerMap) {
         try (FileWriter writer = new FileWriter(fileName)) {
             // Write the CSV header
             writer.write(

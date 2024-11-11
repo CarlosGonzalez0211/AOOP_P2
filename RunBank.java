@@ -34,8 +34,8 @@ public class RunBank {
      */
     public static void main(String[] args) {
         // Load customer data from file into two HashMaps (ID-based and name-based as keys)
-        PopulationHashmap customerMap = new PopulationHashmap();
-        HashMap<String, Customer>[] customersMap = customerMap.readFile();
+        // PopulationHashmap customerMap = new PopulationHashmap();
+        HashMap<String, Customer>[] customersMap = PopulationHashmap.readFile(); //llamar a la clase
 
         try (Scanner scanner = new Scanner(System.in)) {
             System.out.println("WELCOME TO EL PASO MINERS BANK");
@@ -126,7 +126,7 @@ public class RunBank {
     private static void individualUserMenu(Customer customer, HashMap<String, Customer>[] customersMap) {
 
         Scanner scanner = new Scanner(System.in);
-        PopulationHashmap customerMap = new PopulationHashmap();
+        // PopulationHashmap customerMap = new PopulationHashmap();
 
         while (true) {
             try {
@@ -152,9 +152,11 @@ public class RunBank {
                     System.out.println("Invalid choice. Please choose a number between 1 and 6.");
                     continue;
                 }
-
+                //Change to 
                 if (userChoice == 6) {
-                    customerMap.writeToCSV("id_map.csv", customersMap[1]);
+                    //
+                    PopulationHashmap.writeToCSV("id_map.csv", customersMap[1]);
+                    //PopulationHashmap.writebllabal
                     System.out.println("Thank you for visiting us!");
 
 
