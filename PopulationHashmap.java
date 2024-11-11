@@ -14,6 +14,7 @@ import java.util.Scanner;
  * @author Daniela Castro Enriquez
  * @author Carlos Gonzalez
  * @author Aylin Rodriguez
+ * @author Contributor Joel Martinez (El mero vergas)
  * 
  */
 public class PopulationHashmap {

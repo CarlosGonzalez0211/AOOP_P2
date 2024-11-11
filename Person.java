@@ -1,11 +1,11 @@
 /**
  * This method represents a person with personal details such as ID number, name,
  * date of birth, address, and phone number.
- * 
+ *
  * @author Daniela Castro Enriquez
  * @author Carlos Gonzalez
  * @author Aylin Rodriguez
- * 
+ *
  */
 public class Person {
 

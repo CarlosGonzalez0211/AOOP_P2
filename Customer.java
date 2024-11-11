@@ -141,17 +141,17 @@ public class Customer extends Person {
         Log.logEntries(name + " made a deposit on " + accountTitle + ". " + name + "'s new balance for " + accountTitle + " is " + account.getBalance());
     }
 
-    public static void makeWithdrawal(Customer customer, Scanner scanner){
-        System.out.println("Which account would you like to make a deposit?");
+    public static void makeWithdrawal(Customer customer, Scanner scanner) {
+        System.out.println("Which account would you like to make a withdrawal from?");
         RunBank.menuTypesAccount();
         Account account = null;
         System.out.print("Enter your choice (1 to 2): ");
 
         while (account == null) {
             String choice = scanner.next().trim(); // Read and trim input
-            account = RunBank.getAccountByChoice(customer, choice); 
+            account = RunBank.getAccountByChoice(customer, choice);
 
-            if (choice.equals("3")){
+            if (choice.equals("3")) {
                 System.out.println("You cannot withdraw from credit.");
                 System.out.print("Input valid choice 1 to 2: ");
                 account = null;
@@ -164,8 +164,11 @@ public class Customer extends Person {
         }
 
         double amount = withdrawMoney(account, scanner);
+        account.setBalance(account.getBalance() - amount);  // Subtract the amount from the account balance
         Log.logEntries("Withdrawal successful of $" + amount + " from " + account.getAccountType() + " account. New " + account.getAccountType() + " account balance: $" + account.getBalance());
-        
+
+        // Add this line to print the updated balance for validation
+        System.out.println("New " + account.getAccountType() + " account balance: $" + account.getBalance());
     }
 
     public static void makeTransfer(Customer customer, Scanner scanner){

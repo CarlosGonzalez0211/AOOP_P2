@@ -1,0 +1,82 @@
+Ariel Disney made a balance inquiry on Checking-Checking-1008. Ariel Disney's Balance for Checking-1008is 1581.97
+Alex Avila made a balance inquiry on Checking-1037. Alex Avila's Balance for Checking-1037 is 85.09
+Alex Avila made a balance inquiry on Checking-1037. Alex Avila's Balance for Checking-1037 is 85.09
+Alex Avila made a deposit on Checking-1037. Alex Avila's new balance for Checking-1037 is 95.09
+Alex Avila made a deposit on Checking-1037. Alex Avila's new balance for Checking-1037 is 105.09
+Alex Avila made a deposit on Credit-3037. Alex Avila's new balance for Credit-3037 is -1777.58
+Alex Avila made a deposit on Checking-1037. Alex Avila's new balance for Checking-1037 is 95.09
+Person@46fbb2c1 transferred: $20.0 from Checking account to Savings account
+Withdrawal successful of $20.0 from Checking account. New Checking account balance: $65.09
+Person@6d5380c2 paid: $20.0 from Checking-1037 account to Brandon Bustamante's Checking-1043 account.
+Alex Avila transferred: $10.0 from Checking account to Credit account
+Alex Avila transferred: $10.0 from Checking account to Savings account
+Alex Avila paid: $10.0 from Checking-1037 account to Brandon Bustamante's Savings-2043 account.
+Brandon Bustamante made a balance inquiry on Savings-2043. Brandon Bustamante's Balance for Savings-2043 is 3764.74
+Brandon Bustamante made a deposit on Checking-1043. Brandon Bustamante's new balance for Checking-1043 is 385.39
+Brandon Bustamante made a deposit on Checking-1043. Brandon Bustamante's new balance for Checking-1043 is 435.39
+Brandon Bustamante paid: $28.0 from Savings-2043 account to Daniel A's Checking-1078 account.
+Brandon Bustamante transferred: $560.0 from Savings account to Checking account
+Alex Avila made a deposit on Checking-1037. Alex Avila's new balance for Checking-1037 is 105.09
+Withdrawal successful of $600.0 from Checking account. New Checking account balance: $61.74000000000001
+Alex Avila made a balance inquiry on their accounts.
+Alex Avila made a deposit on Checking-1037. Alex Avila's new balance for Checking-1037 is 207.09
+Alex Avila transferred: $45.0 from Checking account to Savings account
+Alex Avila made a balance inquiry on their accounts.
+Anthony Jasso made a balance inquiry on their accounts.
+Anthony Jasso paid $320.0 to Alex Avila from Checking account to Credit account.
+Alex Avila paid $12.0 to Grecia Navarrete from Checking account to Checking account.
+Alex Avila made a balance inquiry on their accounts.
+Daniela Castro made a balance inquiry on their accounts.
+Daniela Castro made a balance inquiry on their accounts.
+Daniela Castro made a balance inquiry on their accounts.
+Daniela Castro made a balance inquiry on their accounts.
+Daniela Castro made a balance inquiry on their accounts.
+Daniela Castro made a balance inquiry on their accounts.
+Daniela Castro made a balance inquiry on their accounts.
+Daniela Castro made a balance inquiry on their accounts.
+Daniela Castro made a balance inquiry on their accounts.
+Daniela Castro made a balance inquiry on their accounts.
+Daniela Castro made a balance inquiry on their accounts.
+Daniela Castro made a balance inquiry on their accounts.
+Daniela Castro transferred: $1000.0 from Checking account to Savings account
+Daniela Castro made a balance inquiry on their accounts.
+Daniela Castro transferred: $1000.0 from Checking account to Savings account
+Daniela Castro made a balance inquiry on their accounts.
+Daniela Castro transferred: $1000.0 from Checking account to Savings account
+Daniela Castro made a deposit on Checking-1234. Daniela Castro's new balance for Checking-1234 is 1500.0
+Daniela Castro made a balance inquiry on their accounts.
+Daniela Castro transferred: $1000.0 from Checking account to Savings account
+Daniela Castro made a deposit on Checking-1234. Daniela Castro's new balance for Checking-1234 is 1500.0
+Daniela Castro made a balance inquiry on their accounts.
+Daniela Castro transferred: $1000.0 from Checking account to Savings account
+Withdrawal successful of $500.0 from Checking account. New Checking account balance: $1000.0
+Daniela Castro made a deposit on Checking-1234. Daniela Castro's new balance for Checking-1234 is 1500.0
+Daniela Castro made a balance inquiry on their accounts.
+Daniela Castro transferred: $1000.0 from Checking account to Savings account
+Daniela Castro made a deposit on Checking-1234. Daniela Castro's new balance for Checking-1234 is 1500.0
+Daniela Castro made a balance inquiry on their accounts.
+Daniela Castro transferred: $1000.0 from Checking account to Savings account
+Withdrawal successful of $500.0 from Checking account. New Checking account balance: $1000.0
+Daniela Castro made a deposit on Checking-1234. Daniela Castro's new balance for Checking-1234 is 1500.0
+Daniela Castro made a balance inquiry on their accounts.
+Daniela Castro transferred: $1000.0 from Checking account to Savings account
+Withdrawal successful of $500.0 from Checking account. New Checking account balance: $500.0
+Daniela Castro made a deposit on Checking-1234. Daniela Castro's new balance for Checking-1234 is 1500.0
+Daniela Castro paid $200.0 to Daniela Castro from Checking account to Checking account.
+Daniela Castro made a balance inquiry on their accounts.
+Daniela Castro transferred: $1000.0 from Checking account to Savings account
+Withdrawal successful of $500.0 from Checking account. New Checking account balance: $500.0
+Daniela Castro made a deposit on Checking-1234. Daniela Castro's new balance for Checking-1234 is 1500.0
+Daniela Castro paid $200.0 to Aylin Rodriguez from Checking account to Checking account.
+Daniela Castro made a balance inquiry on their accounts.
+Daniela Castro transferred: $1000.0 from Checking account to Savings account
+Withdrawal successful of $500.0 from Checking account. New Checking account balance: $500.0
+Daniela Castro made a deposit on Checking-1234. Daniela Castro's new balance for Checking-1234 is 1500.0
+Daniela Castro made a balance inquiry on their accounts.
+Daniela Castro transferred: $1000.0 from Checking account to Savings account
+Daniela Castro paid $500.0 to Aylin Rodriguez from Checking account to Checking account.
+Withdrawal successful of $500.0 from Checking account. New Checking account balance: $500.0
+Daniela Castro made a deposit on Checking-1234. Daniela Castro's new balance for Checking-1234 is 1500.0
+Daniela Castro made a balance inquiry on their accounts.
+Daniela Castro transferred: $1000.0 from Checking account to Savings account
+Withdrawal successful of $500.0 from Checking account. New Checking account balance: $500.0
