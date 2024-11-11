@@ -26,6 +26,7 @@ public class Customer extends Person {
     /** An array of all accounts associated with this customer (credit, checking, savings). */
     private Account[] accounts;
 
+
     /**
      * This constructor constructs a Customer object with the specified personal information and associated accounts.
      *

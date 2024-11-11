@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 
 /**
  * The PopulationHashmap class is responsible for reading customer data from a CSV file
@@ -81,6 +82,7 @@ public class PopulationHashmap {
                 // Populate both HashMaps
                 idMap.put(idNumber, bankCustomer);       // Use ID as key
                 nameMap.put(fullName, bankCustomer);     // Use full name as key
+                Account.addToAccountNumbers(savingAccount.getAccountNum(), checkingAccount.getAccountNum(), creditAccount.getAccountNum());
             }
 
         } catch (FileNotFoundException e) {
@@ -88,8 +90,9 @@ public class PopulationHashmap {
         }
 
         //Print the populated HashMaps
-        printHashMap("ID Map", idMap);
-        printHashMap("Name Map", nameMap);
+        //printHashMap("ID Map", idMap);
+        //printHashMap("Name Map", nameMap);
+        printSet(Account.getSetAccountsNumbers());
 
         // Return an array of HashMap<String, Customer>
         return new HashMap[]{idMap, nameMap};
@@ -187,6 +190,11 @@ public class PopulationHashmap {
         }
     }
 
+    public static void printSet(Set<Integer> accountsNumbers){
+        for (int id:accountsNumbers) {
+            System.out.println(id);
+        }
+    }
     /**
      * The main method to run the PopulationHashmap program.
      *

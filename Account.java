@@ -1,3 +1,6 @@
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * This class shows the different attributes and functionalities that an account has.
  * Thie class is inherited by Checking, Credit, and Saving, since they are all 
@@ -25,6 +28,21 @@ public abstract class Account {
     /** The type of the account, either a Checking, Savings, or Credit account. */
     private String accountType;
 
+    private static Set<Integer> accountNumbers = new HashSet<>();
+    
+    public static void addToAccountNumbers(int savingsNum, int checkingNum, int creditNum){
+        accountNumbers.add(savingsNum);
+        accountNumbers.add(checkingNum);
+        accountNumbers.add(creditNum);
+    }
+
+    public static void addIdToAccountSet(int idNumber){
+        accountNumbers.add(idNumber);
+    }
+
+    public static Set<Integer> getSetAccountsNumbers(){
+        return accountNumbers;
+    }
     /**
      * This constructor initializes the account with th enumber of the account
      * the balance that has in the beginning, the account holder, and the type
@@ -35,6 +53,7 @@ public abstract class Account {
      * @param accountHolder   the owner of type Person of the account.
      * @param accountType     the type of the account, either a Checking, Savings, or Credit account.
      */
+    
     public Account(int accountNumber, double startingBalance, Person accountHolder, String accountType) {
         this.accountNumber = accountNumber;
         this.startingBalance = startingBalance;

@@ -478,8 +478,8 @@ public class RunBank {
     }
 
     private static void addNewUser(Scanner scanner, HashMap<String, Customer>[] customersMaps) {
-        // Increment lastUserId for the new user
-        int maxId = getMaxUserId(customersMaps[0]) + 1;
+        // Increment lastUserId for the new user (method located in Person class)
+        int maxId = Person.getMaxId() + 1; 
         String newUserId = String.valueOf(maxId);
 
         // user information
@@ -506,6 +506,8 @@ public class RunBank {
 
         System.out.print("Enter Phone Number: ");
         String phoneNumber = scanner.nextLine();
+
+        //System.out.println(maxId); 
         
         
         // create new account numbers for accounts savingsAccountNumber = generateAccountNumber();
@@ -513,31 +515,23 @@ public class RunBank {
         int creditAccountNumber = generateAccountNumber();
         int savingsAccountNumber = generateAccountNumber();
 
+        System.out.println(checkingAccountNumber);
+        System.out.println(creditAccountNumber);
+        System.out.println(savingsAccountNumber);
         //Credit Score part
 
     }
 
-    public static int getMaxUserId(HashMap<String, Customer> customerMap) {
-        int maxId = 0; // Start with the minimum possible value
-
-        for (String userId : customerMap.keySet()) {
-            try {
-                int id = Integer.parseInt(userId); // Convert the user ID to an integer
-                if (id > maxId) {
-                    maxId = id; // Update maxId if a larger ID is found
-                }
-            } catch (NumberFormatException e) {
-                // Handle any non-numeric user IDs gracefully
-                System.out.println("Invalid user ID format: " + userId);
-            }
-        }
-
-        return maxId;
-    }
-
     private static int generateAccountNumber(){
         Random random = new Random();
-        int number = random.nextInt(6001); // Generates a number between 0 and 6000 (inclusive)
+        int number = random.nextInt(9000); 
+        
+        //While the random number is not 
+        while(Account.getSetAccountsNumbers().contains(random)){
+            System.out.println(number);
+            number = random.nextInt(9000); 
+        }// Generates a number between 0 and 6000 (inclusive)
+        Account.addIdToAccountSet(number); //Add new number to account id's set.
         return number;
     }
 }
