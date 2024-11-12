@@ -44,6 +44,13 @@ public class Customer extends Person {
         this.accounts = accounts;
     }
 
+    public Customer(String idNumber, String firstName, String lastName, String dateOfBirth, String address, String city, String state, String zip,
+                    String phoneNumber, Account[] accounts) {
+        super(idNumber, firstName, lastName, dateOfBirth, address, city, state, zip, phoneNumber);
+        this.accounts = accounts;
+    }
+
+
     /**
      * This method retrieves the customer's credit account.
      *

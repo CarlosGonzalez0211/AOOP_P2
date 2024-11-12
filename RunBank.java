@@ -1,8 +1,10 @@
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Set;
 /**
  * The RunBank class serves as the entry point for the El Paso Miners Bank application.
  * enables users to perform banking operations.
@@ -35,6 +37,7 @@ public class RunBank {
     public static void main(String[] args) {
         // Load customer data from file into two HashMaps (ID-based and name-based as keys)
         // PopulationHashmap customerMap = new PopulationHashmap();
+        
         HashMap<String, Customer>[] customersMap = PopulationHashmap.readFile(); //llamar a la clase
 
         try (Scanner scanner = new Scanner(System.in)) {
@@ -478,62 +481,115 @@ public class RunBank {
 
         return account;
     }
+    private static Set<Integer> existingAccountNumbers = new HashSet<>();
 
     private static void addNewUser(Scanner scanner, HashMap<String, Customer>[] customersMaps) {
         // Increment lastUserId for the new user (method located in Person class)
         int maxId = Person.getMaxId() + 1; 
-        String newUserId = String.valueOf(maxId);
+    String newUserId = String.valueOf(maxId);
 
-        // user information
-        System.out.print("Enter First Name: ");
-        String firstName = scanner.nextLine();
+    // User information
+    System.out.print("Enter First Name: ");
+    String firstName = scanner.nextLine();
 
-        System.out.print("Enter Last Name: ");
-        String lastName = scanner.nextLine();
+    System.out.print("Enter Last Name: ");
+    String lastName = scanner.nextLine();
 
-        System.out.print("Enter Date of Birth (YYYY-MM-DD): ");
-        String dateOfBirth = scanner.nextLine();
+    System.out.print("Enter Date of Birth (YYYY-MM-DD): ");
+    String dateOfBirth = scanner.nextLine();
 
-        System.out.print("Enter Address: ");
-        String address = scanner.nextLine();
+    System.out.print("Enter Address: ");
+    String address = scanner.nextLine();
 
-        System.out.print("Enter City: ");
-        String city = scanner.nextLine();
+    System.out.print("Enter City: ");
+    String city = scanner.nextLine();
 
-        System.out.print("Enter State: ");
-        String state = scanner.nextLine();
+    System.out.print("Enter State: ");
+    String state = scanner.nextLine();
 
-        System.out.print("Enter Zip Code: ");
-        String zip = scanner.nextLine();
+    System.out.print("Enter Zip Code: ");
+    String zip = scanner.nextLine();
 
-        System.out.print("Enter Phone Number: ");
-        String phoneNumber = scanner.nextLine();
+    System.out.print("Enter Phone Number: ");
+    String phoneNumber = scanner.nextLine();
 
-        //System.out.println(maxId); 
-        
-        
-        // create new account numbers for accounts savingsAccountNumber = generateAccountNumber();
-        int checkingAccountNumber = generateAccountNumber();
-        int creditAccountNumber = generateAccountNumber();
-        int savingsAccountNumber = generateAccountNumber();
+    // Generate account numbers for accounts
+    int checkingAccountNumber = generateAccountNumber();
+    int creditAccountNumber = generateAccountNumber();
+    int savingsAccountNumber = generateAccountNumber();
 
-        System.out.println(checkingAccountNumber);
-        System.out.println(creditAccountNumber);
-        System.out.println(savingsAccountNumber);
-        //Credit Score part
+    System.out.println("Checking Account Number: " + checkingAccountNumber);
+    System.out.println("Credit Account Number: " + creditAccountNumber);
+    System.out.println("Savings Account Number: " + savingsAccountNumber);
 
-    }
+    // Generate random credit score and determine credit limit
+    Random rand = new Random();
+    int creditScore = rand.nextInt(551) + 300; // Random number between 300 and 850
+    System.out.println("Random Credit Score: " + creditScore);
+    double creditLimit = determineCreditLimit(creditScore);
+    System.out.println("Credit Limit: " + creditLimit);
 
-    private static int generateAccountNumber(){
-        Random random = new Random();
-        int number = random.nextInt(9000); 
-        
-        //While the random number is not 
-        while(Account.getSetAccountsNumbers().contains(random)){
-            System.out.println(number);
-            number = random.nextInt(9000); 
-        }// Generates a number between 0 and 6000 (inclusive)
-        Account.addIdToAccountSet(number); //Add new number to account id's set.
-        return number;
-    }
+    // Step 1: Create a temporary newCustomer object without accounts
+    Person newPerson = new Person(newUserId, firstName, lastName, dateOfBirth, address, city, state, zip, phoneNumber);
+
+    // Step 2: Create Account objects with newCustomer as the account holder
+    Account checkingAccount = new Checking(checkingAccountNumber, 0.0, newPerson);
+    Account savingsAccount = new Saving(savingsAccountNumber, 0.0, newPerson);
+    Account creditAccount = new Credit(creditAccountNumber, creditLimit, creditLimit, (Person) newPerson);
+
+    // Step 3: Store accounts in an array
+    Account[] accounts = {checkingAccount, savingsAccount, creditAccount};
+
+    Customer newCustomer = new Customer(newUserId, firstName, lastName, dateOfBirth, address, phoneNumber, accounts);
+
+    // Step 4: Set the accounts array in newCustomer
+    newCustomer.setAccounts(accounts);
+
+    // Add the new customer to the customers map
+    customersMaps[0].put(newUserId, newCustomer);
+
+    // Print out the full details of the new customer
+    System.out.println("\nNew Customer Added: ");
+    System.out.println("User ID: " + newUserId);
+    System.out.println("Name: " + firstName + " " + lastName);
+    System.out.println("Date of Birth: " + dateOfBirth);
+    System.out.println("Address: " + address);
+    System.out.println("City: " + city);
+    System.out.println("State: " + state);
+    System.out.println("Zip Code: " + zip);
+    System.out.println("Phone Number: " + phoneNumber);
+    System.out.println("Checking Account Number: " + checkingAccountNumber);
+    System.out.println("Credit Account Number: " + creditAccountNumber);
+    System.out.println("Savings Account Number: " + savingsAccountNumber);
+    System.out.println("Credit Score: " + creditScore);
+    System.out.println("Credit Limit: " + creditLimit);
 }
+    private static double determineCreditLimit(int creditScore) {
+        Random random = new Random();
+        if (creditScore <= 580) {
+            return 100 + (random.nextDouble() * 600); // $100 - $699
+        } else if (creditScore <= 669) {
+            return 700 + (random.nextDouble() * 4300); // $700 - $4999
+        } else if (creditScore <= 739) {
+            return 5000 + (random.nextDouble() * 2500); // $5000 - $7499
+        } else if (creditScore <= 799) {
+            return 7500 + (random.nextDouble() * 8500); // $7500 - $15999
+        } else {
+            return 16000 + (random.nextDouble() * 9000); // $16000 - $25000
+        }
+    }
+    //private static Set<Integer> existingAccountNumbers = new HashSet<>();
+    private static int generateAccountNumber(){
+        Random rand = new Random();
+        int accountNumber;
+        do {
+            accountNumber = rand.nextInt(10000) + 1000; // i know you wanted i think a forloop
+            //instead of a do while you can change it but i think its better the do while
+            //because executes the code at least once regarding the codition and for the for loop
+            //we need to initialize the counter and then ensure the loop runs at least ones which is more
+            // complex for the logic pero como tu quieras
+        } while (!existingAccountNumbers.add(accountNumber)); //this checks and adds to the set if the number generated is unique
+        return accountNumber;
+    }
+    }
+

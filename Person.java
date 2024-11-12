@@ -26,6 +26,10 @@ public class Person {
 
     /** The phone number of the person. */
     private String phoneNumber;
+
+    private String city;
+    private String state;
+    private String zip;
     
     private static String maxID = "-1";
     
@@ -39,8 +43,7 @@ public class Person {
          * @param address    the address of the person
          * @param phoneNumber the phone number of the person
          */
-        public Person(String idNumber, String firstName, String lastName, String dateOfBirth, String address,
-                      String phoneNumber) {
+        public Person(String idNumber, String firstName, String lastName, String dateOfBirth, String address, String phoneNumber) {
             this.idNumber = idNumber;
             this.firstName = firstName;
             this.lastName = lastName;
@@ -48,6 +51,19 @@ public class Person {
             this.address = address;
             this.phoneNumber = phoneNumber;
             setMaxID(idNumber);
+        }
+
+        public Person(String idNumber, String firstName, String lastName, String dateOfBirth, String address, String city, String state, String zip, String phoneNumber) {
+            this.idNumber = idNumber;
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.dateOfBirth = dateOfBirth;
+            this.address = address;
+            this.city = city;
+            this.state = state;
+            this.zip = zip;
+            this.phoneNumber = phoneNumber;
+            //setMaxID(idNumber);
         }
     
         /**
@@ -85,7 +101,7 @@ public class Person {
         public void setDateOfBirth(String dateOfBirth) {
             this.dateOfBirth = dateOfBirth;
         }
-    
+        
         /**
          * This method sets the address of the person.
          *
@@ -93,6 +109,18 @@ public class Person {
          */
         public void setAddress(String address) {
             this.address = address;
+        } 
+
+        public void setCity(String city) {
+            this.city = city;
+        }
+
+        public void setState(String state) {
+            this.state = state;
+        }
+
+        public void setZip(String zip) {
+            this.zip = zip;
         }
     
         /**
