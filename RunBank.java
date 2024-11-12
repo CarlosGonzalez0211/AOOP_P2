@@ -1,8 +1,11 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Random;
 import java.util.Scanner;
+
 /**
  * The RunBank class serves as the entry point for the El Paso Miners Bank application.
  * enables users to perform banking operations.
@@ -32,10 +35,12 @@ public class RunBank {
      *
      * @param args command-line arguments (not used)
      */
+
+    public static HashMap<String, Customer>[] customersMap = PopulationHashmap.readFile(); 
     public static void main(String[] args) {
         // Load customer data from file into two HashMaps (ID-based and name-based as keys)
         // PopulationHashmap customerMap = new PopulationHashmap();
-        HashMap<String, Customer>[] customersMap = PopulationHashmap.readFile(); //llamar a la clase
+        //llamar a la clase
 
         try (Scanner scanner = new Scanner(System.in)) {
             System.out.println("WELCOME TO EL PASO MINERS BANK");
@@ -281,6 +286,8 @@ public class RunBank {
             System.out.println("A. Inquire account by name.");
             System.out.println("B. Inquire account by type/number.");
             System.out.println("C. Add new bank user.");
+            System.out.println("D. Transaction reader.");
+
             System.out.print("Please enter your choice:  ");
             userInput = scanner.nextLine();
 
@@ -292,6 +299,8 @@ public class RunBank {
                 break;
             }else if(userInput.equalsIgnoreCase("C")){
                 addNewUser(scanner, customersMaps);
+            }else if(userInput.equalsIgnoreCase("D")){
+                transactionReader();
             }else{
                 System.out.println("Invalid choice. Input a valid option (A/B): ");
             }
@@ -535,5 +544,68 @@ public class RunBank {
         }// Generates a number between 0 and 6000 (inclusive)
         Account.addIdToAccountSet(number); //Add new number to account id's set.
         return number;
+    }
+
+    private static void transactionReader() {
+        /*
+         * 1. I need to store in a string array all the columns (From, bla)
+         * 2. Make action amount an integer
+         * 3. Switch case of all methods.
+         */
+
+        try {
+            Scanner user = new Scanner(System.in);
+            Scanner scanner = new Scanner(new File("Transactions.csv"));
+            String infoHeaders = scanner.nextLine();
+            String[] headers = infoHeaders.split(",");
+
+            while (scanner.hasNextLine()){
+                String[] informationLine = scanner.nextLine().split(",");
+                String fromFirstName = informationLine[0].isEmpty()? null : informationLine[0];
+                String fromLastName = informationLine[1].isEmpty()? null : informationLine[1];
+                String fromWhere = informationLine[2].isEmpty()? null : informationLine[2];
+                String action = informationLine[3].isEmpty()? null : informationLine[3];
+                String toFirstName = informationLine[4].isEmpty()? null : informationLine[4];
+                String toLastName = informationLine[5].isEmpty()? null : informationLine[5];
+                String toWhere = informationLine[6].isEmpty()? null : informationLine[6];
+                String fromFullName = fromFirstName + " " + fromLastName;
+                String toFullName = toFirstName + " " + toLastName;
+                double amount = Double.parseDouble(informationLine[7]);
+            
+
+                switch (action){
+                    case "inquires" ->{
+                        Customer.inquireBalance(customersMap[1].get(fromFullName)); //modify methods for bank manager
+                        break;
+                    }
+                    case "deposits" ->{
+                        Customer.makeDeposit(customersMap[1].get(toLastName), user); //override/ overload
+                        break;
+                    }
+                    case "withdraws" ->{
+                        Customer.makeWithdrawal(customersMap[1].get(toLastName), user);
+                        break;
+                    }
+                    case "transfers" ->{
+                        Customer.makeTransfer(customersMap[1].get(toLastName), scanner);
+                        break;
+                    }
+
+                    case "pays" ->{
+                        Customer.paySomeoneTransaction(fromFullName, toFullName, fromWhere, toWhere, amount);
+                        break;
+
+                    }
+
+                    //default
+                }
+            }
+
+
+        } catch (FileNotFoundException e) {
+            System.out.println("Transactions file not found.");
+        }
+       
+        
     }
 }
