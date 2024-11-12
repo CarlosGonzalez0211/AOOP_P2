@@ -153,172 +153,173 @@ public class Customer extends Person {
         System.out.println("Which account would you like to make a withdrawal from?");
         RunBank.menuTypesAccount();
         Account account = null;
-        System.out.print("Enter your choice (1 to 2): ");
-
+        System.out.print("Enter your choice (1 to 3): "); // Include credit as option 3
+    
         while (account == null) {
             String choice = scanner.next().trim(); // Read and trim input
             account = RunBank.getAccountByChoice(customer, choice);
-
-            if (choice.equals("3")) {
-                System.out.println("You cannot withdraw from credit.");
-                System.out.print("Input valid choice 1 to 2: ");
-                account = null;
-                continue;
-            }
-
+    
             if (account == null) {
-                System.out.println("Input valid choice. 1 to 2");
+                System.out.println("Input a valid choice. 1 to 3:");
             }
         }
-
-        double amount = withdrawMoney(account, scanner);
-        account.setBalance(account.getBalance() - amount);  // Subtract the amount from the account balance
-        Log.logEntries("Withdrawal successful of $" + amount + " from " + account.getAccountType() + " account. New " + account.getAccountType() + " account balance: $" + account.getBalance());
-
-        // Add this line to print the updated balance for validation
+    
+    
+        // Update account balance accordingly
+        
+        double amount = withdrawMoney(account, scanner); // Only call to get withdrawal amount
+        account.setBalance(account.getBalance() - amount);
+        // Display updated balance without further subtraction
         System.out.println("New " + account.getAccountType() + " account balance: $" + account.getBalance());
+        Log.logEntries("Withdrawal of $" + amount + " from " + account.getAccountType() + " account. New balance: $" + account.getBalance());
+        
     }
 
-    public static void makeTransfer(Customer customer, Scanner scanner){
-        //Which account to withdraw:
-        System.out.println("Choose account to withdraw from?");
+    public static void makeTransfer(Customer customer, Scanner scanner) {
+        // Choose account to withdraw from:
+        System.out.println("Choose account to withdraw from:");
         RunBank.menuTypesAccount();
         Account accountFrom = null;
-        System.out.print("Enter your choice (1 to 2): ");
-
+        System.out.print("Enter your choice (1 to 3): ");
+        
+        // Input validation loop for accountFrom
         while (accountFrom == null) {
-            String choice = scanner.next().trim(); // Read and trim input
-            accountFrom = RunBank.getAccountByChoice(customer, choice); 
-
-            if (choice.equals("3")){
-                System.out.println("You cannot withdraw from credit.");
-                System.out.print("Input valid choice 1 to 2: ");
-                accountFrom = null;
-                continue;
-            }
-
+            String choice = scanner.next().trim();
+            accountFrom = RunBank.getAccountByChoice(customer, choice);
+        
             if (accountFrom == null) {
-                System.out.println("Input valid choice. 1 to 2");
+                System.out.println("Invalid choice. Enter 1, 2, or 3:");
             }
         }
-
-        System.out.println("Choose account to transfer to?");
+        
+        // Choose account to transfer to:
+        System.out.println("Choose account to transfer to:");
         RunBank.menuTypesAccount();
         Account accountTo = null;
         System.out.print("Enter your choice (1 to 3): ");
-
+        
+        // Input validation loop for accountTo
         while (accountTo == null) {
-            String choice = scanner.next().trim(); // Read and trim input
-            accountTo = RunBank.getAccountByChoice(customer, choice); 
+            String choice = scanner.next().trim();
+            accountTo = RunBank.getAccountByChoice(customer, choice);
+        
             if (accountTo == null) {
-                System.out.println("Input valid choice. 1 to 3");
+                System.out.println("Invalid choice. Enter 1, 2, or 3:");
             }
         }
-
-        //Deposit money
+        
+        // Withdraw amount from accountFrom
         double amount = withdrawMoney(accountFrom, scanner);
-        if (accountTo == customer.getCreditAccount()) {
-            double creditMax = Math.abs(customer.getCreditAccount().getCreditMax());
-            double currentBalance = accountTo.getBalance();
+        
+        // Additional validation for credit account withdrawals and ensuring transfer doesn't exceed balance
+        if (accountFrom == customer.getCreditAccount()) {
+            double currentBalance = accountFrom.getBalance();  // current debt on the credit account
+            double creditMax = Math.abs(customer.getCreditAccount().getCreditMax());  // credit limit (positive value)
             
+            // Ensure the transfer amount does not exceed available credit
+            if (Math.abs(currentBalance) + amount > creditMax) {
+                System.out.println("Transfer would exceed the credit limit of $" + creditMax);
+                System.out.println("Transfer failed. Please enter a valid amount.");
+                return; // Exit the method if the transfer is not allowed
+            }
+        }
+        
+        // Perform the transfer
+        accountFrom.setBalance(accountFrom.getBalance() - amount);
+        accountTo.setBalance(accountTo.getBalance() + amount);
+        
+        // Log and confirm
+        System.out.println("Transfer successful!");
+        String name = customer.getFirstName() + " " + customer.getLastName();
+        Log.logEntries(name + " transferred $" + amount + " from " + accountFrom.getAccountType() + " to " + accountTo.getAccountType());
+        
+        // Display updated balances
+        System.out.println("New balance for " + accountFrom.getAccountType() + " account: $" + accountFrom.getBalance());
+    }
+    
+    
+    public static void paySomeone(Customer customer, Scanner scanner, HashMap<String, Customer> customerMap) {
+    System.out.println("Which account would you like to withdraw from?");
+    RunBank.menuTypesAccount();
+    Account accountFrom = null;
+    System.out.print("Enter your choice (1 to 3): ");
+    
+    while (accountFrom == null) {
+        String choice = scanner.next().trim();
+        accountFrom = RunBank.getAccountByChoice(customer, choice);
 
-            while (currentBalance + amount > creditMax) {
-                System.out.println("You cannot deposit more money than the credit max: $" + creditMax);
+        if (accountFrom == null) {
+            System.out.println("Invalid choice. Please enter 1, 2, or 3.");
+        }
+    }
+
+    // Step 2: Input the amount to withdraw, with checks for credit limits if necessary
+    double amount = withdrawMoney(accountFrom, scanner);
+
+    // Step 3: Input the recipient's name
+    System.out.print("Enter the full name of the recipient: ");
+    scanner.nextLine(); // Consume any leftover newline
+    String recipientName = scanner.nextLine().trim();
+
+    // Check if the recipient exists in the customer map
+    if (!customerMap.containsKey(recipientName)) {
+        System.out.println("Recipient not found. Payment canceled.");
+        return;
+    }
+
+    Customer recipient = customerMap.get(recipientName);
+    if (customer.getFirstName().equals(recipient.getFirstName()) && customer.getLastName().equals(recipient.getLastName())) {
+        System.out.println("You cannot pay yourself. Payment canceled.");
+        return;
+    }
+
+    // Choose the recipient's account to deposit into (Checking or Savings)
+    System.out.println("Which account would you like to pay into?");
+    RunBank.menuTypesAccount();
+    Account accountTo = null;
+    System.out.print("Enter your choice (1 or 2): ");
+
+    while (accountTo == null) {
+        String choice = scanner.next().trim();
+        accountTo = RunBank.getAccountByChoice(recipient, choice);
+
+        if (accountTo == null) {
+            System.out.println("Invalid choice. Please enter 1 or 2.");
+        }
+    }
+
+    // Make the payment
+    accountFrom.setBalance(accountFrom.getBalance() - amount);
+    accountTo.setBalance(accountTo.getBalance() + amount);
+
+    System.out.println("Payment successful!");
+    String name = customer.getFirstName() + " " + customer.getLastName();
+    Log.logEntries(name + " paid $" + amount + " to " + recipientName + " from " + accountFrom.getAccountType() + " account to " + accountTo.getAccountType() + " account.");
+}
+
+    private static double withdrawMoney(Account account, Scanner scanner) {
+        System.out.print("Input amount to withdraw: ");
+        double amount = scanner.nextDouble();
+        amount = validateAmount(amount, scanner);
+    
+        // Check for overdraft or balance limits
+        if (account instanceof Credit) {
+            Credit creditAccount = (Credit) account;
+            double maxCreditAvailable = Math.abs(creditAccount.getCreditMax()) - creditAccount.getBalance();
+    
+            while (amount > maxCreditAvailable) {
+                System.out.println("Amount exceeds available credit: $" + maxCreditAvailable);
                 System.out.print("Input a valid amount: ");
                 amount = scanner.nextDouble();
                 amount = validateAmount(amount, scanner);
             }
-        }
-        accountFrom.setBalance(accountFrom.getBalance() - amount);
-        accountTo.setBalance(accountTo.getBalance() + amount);
-
-        System.out.println("Transfer successful!");
-        String name = customer.getFirstName() + " " + customer.getLastName();
-        Log.logEntries(name + " transferred: $" + amount + " from " + accountFrom.getAccountType() + " account to " + accountTo.getAccountType() + " account");
-
-    }
-
-    public static void paySomeone(Customer customer, Scanner scanner, HashMap<String, Customer> customerMap) {
-    // Step 1: Choose account to withdraw from (Checking or Savings)
-        System.out.println("Which account would you like to withdraw from?");
-        RunBank.menuTypesAccount();
-        Account accountFrom = null;
-        System.out.print("Enter your choice (1 to 2): ");
-        while (accountFrom == null) {
-            
-            String choice = scanner.next().trim();
-            accountFrom = RunBank.getAccountByChoice(customer, choice);
-
-            if (choice.equals("3")) {
-                System.out.println("You cannot withdraw from a credit account.");
-                System.out.print("Input valid choice 1 to 2: ");
-                accountFrom = null;
-                continue;
+        } else {
+            while (amount > account.getBalance()) {
+                System.out.println("Amount exceeds account balance: $" + account.getBalance());
+                System.out.print("Input a valid amount: ");
+                amount = scanner.nextDouble();
+                amount = validateAmount(amount, scanner);
             }
-
-            if (accountFrom == null) {
-                System.out.println("Invalid choice. Please enter 1 or 2.");
-            }
-        }
-
-        // Step 2: Input the amount to withdraw
-        double amount = withdrawMoney(accountFrom, scanner);
-
-        // Step 3: Input the recipient's name
-        System.out.print("Enter the full name of the recipient: ");
-        scanner.nextLine(); // Consume any leftover newline
-        String recipientName = scanner.nextLine().trim();
-
-        // Check if the recipient exists in the customer map
-        if (!customerMap.containsKey(recipientName)) {
-            System.out.println("Recipient not found. Payment canceled.");
-            return;
-        }
-
-        Customer recipient = customerMap.get(recipientName);
-
-        //Choose the recipient's account to deposit into (Checking or Savings)
-        System.out.println("Which account would you like to pay into?");
-        RunBank.menuTypesAccount();
-        Account accountTo = null;
-        System.out.print("Enter choice: ");
-
-        while (accountTo == null) {
-            
-            String choice = scanner.next().trim();
-            accountTo = RunBank.getAccountByChoice(recipient, choice);
-
-            if (choice.equals("3")) {
-                System.out.println("You cannot deposit to a credit account.");
-                System.out.print("Input valid choice 1 to 2: ");
-                accountTo = null;
-                continue;
-            }
-
-            if (accountTo == null) {
-                System.out.println("Invalid choice. Please enter 1 or 2.");
-            }
-        }
-
-        //Make the payment
-        accountFrom.setBalance(accountFrom.getBalance() - amount);
-        accountTo.setBalance(accountTo.getBalance() + amount);
-
-        System.out.println("Payment successful!");
-        String name = customer.getFirstName() + " " + customer.getLastName();
-        Log.logEntries(name + " paid $" + amount + " to " + recipientName + " from " + accountFrom.getAccountType() + " account to " + accountTo.getAccountType() + " account.");
-    }
-
-    private static double withdrawMoney (Account account, Scanner scanner){
-        System.out.print("Input amount to withdraw: ");
-        double amount = scanner.nextDouble();
-        amount = validateAmount(amount, scanner);
-
-        while(amount > account.getBalance()){
-            System.out.println("Amount exceeds account's balance: " + account.getBalance());
-            System.out.print("Input valid amount: ");
-            amount = scanner.nextDouble();
-            amount = validateAmount(amount, scanner);
         }
         return amount;
     }
