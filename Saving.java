@@ -1,55 +1,59 @@
 /**
  * The Saving class represents a savings account that extends the Account class.
  * It is designed to hold a balance and provide functionalities specific to savings accounts.
+ * It implements the Withdrawable interface to provide withdrawal functionality
  * 
  * @author Daniela Castro Enriquez
  * @author Carlos Gonzalez
  * @author Aylin Rodriguez
  * 
  */
-public class Saving extends Account {
+public class Saving extends Account implements Withdrawable {
 
     /**
-     * This cosntructor constructs a Saving account with the specified account number, starting balance,
+     * Constructs a Saving account with the specified account number, starting balance,
      * and account holder's information.
      *
-     * @param accountNumber     the unique identifier for the savings account
-     * @param startingBalance   the initial balance for the savings account
-     * @param accountHolder     the Person object representing the account holder
+     * @param accountNumber   the unique identifier for the savings account
+     * @param startingBalance the initial balance for the savings account
+     * @param accountHolder   the Person object representing the account holder
      */
     public Saving(int accountNumber, double startingBalance, Person accountHolder) {
         super(accountNumber, startingBalance, accountHolder, "Savings");
     }
     
     /**
-     * This method withdraws the specified amount from the savings account.
-     * and checks if the withdrawal, using the method allowedToWithdraw, is allowed based on the current balance.
+     * Attempts to withdraw the specified amount from the savings account.
+     * Checks if the withdrawal is allowed based on the current balance.
      *
      * @param amount the amount to be withdrawn
      * @return true if the withdrawal was successful; false if there were insufficient funds
      */
-
     @Override
-    public boolean withdraw(double amount){
-        if(allowedToWithdraw(amount)){
+    public boolean withdraw(double amount) {
+        if (allowedToWithdraw(amount)) {
             setBalance(getBalance() - amount);
             return true;
         }
-        System.out.println("Insufficient funds. " +
-                   "Savings account balance: $" + getBalance());
+        System.out.println("Insufficient funds. Savings account balance: $" + getBalance());
         return false;
     }
 
-    
+    /**
+     * Checks if the specified amount can be withdrawn based on the current balance.
+     *
+     * @param amount the amount to be checked for withdrawal
+     * @return true if the current balance is sufficient; false otherwise
+     */
     @Override 
-    public boolean allowedToWithdraw(double amount){
+    public boolean allowedToWithdraw(double amount) {
         return getBalance() >= amount;
     }
 
     /**
-     * This method returns a string were the account information is shown, this method is inherited from the Account class.
+     * Returns a string showing the account information. Inherited from the Account class.
      *
-     * @return a string representing the Checking account information
+     * @return a string representing the Savings account information
      */
     @Override
     public String toString() {

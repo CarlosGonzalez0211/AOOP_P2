@@ -8,7 +8,7 @@
  * @author Aylin Rodriguez
  * 
  */
-public class Checking extends Account {
+public class Checking extends Account implements Withdrawable {
 
     /**
      * This constructor initializes a checking account with the specified account number, starting balance,

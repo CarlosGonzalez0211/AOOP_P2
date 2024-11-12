@@ -8,7 +8,7 @@
  * @author Aylin Rodriguez
  * 
  */
-public class Credit extends Account {
+public class Credit extends Account implements Withdrawable {
 
     /** The credit limit for this account. */
     private double creditMax;
@@ -48,6 +48,7 @@ public class Credit extends Account {
     /**
      * This method withdraws the specified amount from the credit account.
      * The withdrawal of money is allowed if the current balance does not exceed the credit limit.
+     * It implements the Withdrawable interface to provide withdrawal functionality specific to credit accounts.
      *
      * @param amount the amount to be withdrawn
      * @return true if the withdrawal is successful; false if it exceeds the credit limit

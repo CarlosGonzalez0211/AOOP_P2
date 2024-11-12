@@ -593,9 +593,14 @@ private static double determineCreditLimit(int creditScore) {
         Random rand = new Random();
         int accountNumber;
         do {
-            accountNumber = rand.nextInt(10000) + 1000; 
-        } while (!existingAccountNumbers.add(accountNumber)); 
+            accountNumber = 100000 + rand.nextInt(900000); // Generate a 6-digit account number
+        } while (existingAccountNumbers.contains(accountNumber)); // Check for uniqueness
+        
+        existingAccountNumbers.add(accountNumber); // Add to set of existing account numbers
         return accountNumber;
     }
     }
+
+    
+    
 
