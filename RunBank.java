@@ -513,7 +513,7 @@ public class RunBank {
     System.out.print("Enter Phone Number: ");
     String phoneNumber = scanner.nextLine();
 
-    // Generate account numbers for accounts
+    //Generate account numbers for accounts
     int checkingAccountNumber = generateAccountNumber();
     int creditAccountNumber = generateAccountNumber();
     int savingsAccountNumber = generateAccountNumber();
@@ -522,27 +522,27 @@ public class RunBank {
     System.out.println("Credit Account Number: " + creditAccountNumber);
     System.out.println("Savings Account Number: " + savingsAccountNumber);
 
-    // Generate random credit score and determine credit limit
+    //Generate random credit score and determine credit limit
     Random rand = new Random();
     int creditScore = rand.nextInt(551) + 300; // Random number between 300 and 850
     System.out.println("Random Credit Score: " + creditScore);
     double creditLimit = determineCreditLimit(creditScore);
     System.out.println("Credit Limit: " + creditLimit);
 
-    // Step 1: Create a temporary newCustomer object without accounts
+    //Create a temporary newPerson object without accounts
     Person newPerson = new Person(newUserId, firstName, lastName, dateOfBirth, address, city, state, zip, phoneNumber);
 
-    // Step 2: Create Account objects with newCustomer as the account holder
+    //Create Account objects with newPerson as the account holder
     Account checkingAccount = new Checking(checkingAccountNumber, 0.0, newPerson);
     Account savingsAccount = new Saving(savingsAccountNumber, 0.0, newPerson);
     Account creditAccount = new Credit(creditAccountNumber, creditLimit, creditLimit, (Person) newPerson);
 
-    // Step 3: Store accounts in an array
+    // Store accounts in an array
     Account[] accounts = {checkingAccount, savingsAccount, creditAccount};
 
     Customer newCustomer = new Customer(newUserId, firstName, lastName, dateOfBirth, address, phoneNumber, accounts);
 
-    // Step 4: Set the accounts array in newCustomer
+    // Set the accounts array in newCustomer
     newCustomer.setAccounts(accounts);
 
     // Add the new customer to the customers map
@@ -550,6 +550,7 @@ public class RunBank {
 
     // Print out the full details of the new customer
     System.out.println("\nNew Customer Added: ");
+    System.out.println("----------------------");
     System.out.println("User ID: " + newUserId);
     System.out.println("Name: " + firstName + " " + lastName);
     System.out.println("Date of Birth: " + dateOfBirth);
@@ -558,37 +559,42 @@ public class RunBank {
     System.out.println("State: " + state);
     System.out.println("Zip Code: " + zip);
     System.out.println("Phone Number: " + phoneNumber);
+    System.out.println(" ");
     System.out.println("Checking Account Number: " + checkingAccountNumber);
     System.out.println("Credit Account Number: " + creditAccountNumber);
     System.out.println("Savings Account Number: " + savingsAccountNumber);
     System.out.println("Credit Score: " + creditScore);
     System.out.println("Credit Limit: " + creditLimit);
+    System.out.println("----------------------");
+    System.out.println(" ");
+
 }
-    private static double determineCreditLimit(int creditScore) {
-        Random random = new Random();
-        if (creditScore <= 580) {
-            return 100 + (random.nextDouble() * 600); // $100 - $699
-        } else if (creditScore <= 669) {
-            return 700 + (random.nextDouble() * 4300); // $700 - $4999
-        } else if (creditScore <= 739) {
-            return 5000 + (random.nextDouble() * 2500); // $5000 - $7499
-        } else if (creditScore <= 799) {
-            return 7500 + (random.nextDouble() * 8500); // $7500 - $15999
-        } else {
-            return 16000 + (random.nextDouble() * 9000); // $16000 - $25000
-        }
+private static double determineCreditLimit(int creditScore) {
+    Random random = new Random();
+    double creditLimit = 0;
+
+    if (creditScore <= 580) {
+        creditLimit = 100 + (random.nextDouble() * 600); // $100 - $699
+    } else if (creditScore <= 669) {
+        creditLimit = 700 + (random.nextDouble() * 4300); // $700 - $4999
+    } else if (creditScore <= 739) {
+        creditLimit = 5000 + (random.nextDouble() * 2500); // $5000 - $7499
+    } else if (creditScore <= 799) {
+        creditLimit = 7500 + (random.nextDouble() * 8500); // $7500 - $15999
+    } else {
+        creditLimit = 16000 + (random.nextDouble() * 9000); // $16000 - $25000
     }
+
+    // Round to the nearest whole number before returning
+    return Math.round(creditLimit);
+}
     //private static Set<Integer> existingAccountNumbers = new HashSet<>();
     private static int generateAccountNumber(){
         Random rand = new Random();
         int accountNumber;
         do {
-            accountNumber = rand.nextInt(10000) + 1000; // i know you wanted i think a forloop
-            //instead of a do while you can change it but i think its better the do while
-            //because executes the code at least once regarding the codition and for the for loop
-            //we need to initialize the counter and then ensure the loop runs at least ones which is more
-            // complex for the logic pero como tu quieras
-        } while (!existingAccountNumbers.add(accountNumber)); //this checks and adds to the set if the number generated is unique
+            accountNumber = rand.nextInt(10000) + 1000; 
+        } while (!existingAccountNumbers.add(accountNumber)); 
         return accountNumber;
     }
     }
