@@ -14,13 +14,13 @@ import java.util.Scanner;
 /**
  * The RunBank class serves as the entry point for the El Paso Miners Bank application.
  * enables users to perform banking operations.
- * 
+ *
  * @author Daniela Castro Enriquez
  * @author Carlos Gonzalez
  * @author Aylin Rodriguez
  *
  * //Random intellij comment
-  */
+ */
 public class RunBank {
     /**
      * This method is the starting point for the El Paso Miners Bank application.
@@ -41,8 +41,8 @@ public class RunBank {
      * @param args command-line arguments (not used)
      */
 
-    
-    public static HashMap<String, Customer>[] customersMap = PopulationHashmap.readFile(); 
+
+    public static HashMap<String, Customer>[] customersMap = PopulationHashmap.readFile();
     public static void main(String[] args) {
         try (Scanner scanner = new Scanner(System.in)) {
             System.out.println("WELCOME TO EL PASO MINERS BANK");
@@ -153,7 +153,7 @@ public class RunBank {
                 }
 
                 int userChoice = scanner.nextInt();
-                
+
 
                 if (userChoice < 1 || userChoice > 6) {
                     System.out.println("Invalid choice. Please choose a number between 1 and 6.");
@@ -177,7 +177,7 @@ public class RunBank {
                 handleOptionsMenu(userChoice, customer, scanner, customersMap);
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input. Please try again.");
-                
+
             }
         }
     }
@@ -218,7 +218,7 @@ public class RunBank {
             case 5 -> Customer.paySomeone(customer, scanner, customersMap[1]);
         }
     }
-    
+
     /**
      * The method handles user input to identify an individual customer and navigate to their menu.
      * This method prompts the user for their name, retrieves the corresponding
@@ -245,9 +245,9 @@ public class RunBank {
             try {
                 System.out.print("Enter your name: ");
                 String name = scanner.nextLine().trim();
-    
+
                 Customer customer = customersMap[1].get(name);
-    
+
                 if (customer != null) {
                     individualUserMenu(customer, customersMap); // Call the menu directly
                     return true;  // Exit the loop if a valid customer is found
@@ -260,8 +260,8 @@ public class RunBank {
         }
     }
 
-    
-    
+
+
     /**
      * Manages the interactions for a bank manager, allowing them to inquire
      * about customer accounts based on name or account type/number.
@@ -298,7 +298,7 @@ public class RunBank {
             System.out.print("Please enter your choice:  ");
             userInput = scanner.nextLine();
 
-            if (userInput.equalsIgnoreCase("A")){   
+            if (userInput.equalsIgnoreCase("A")){
                 inquireByName(customersMaps, scanner);
                 break;
             }else if(userInput.equalsIgnoreCase("B")){
@@ -338,7 +338,7 @@ public class RunBank {
      */
     public static void inquireByName(HashMap<String, Customer>[] customersMaps, Scanner scanner){
         System.out.println("Whose account would you like to inquire about? (Enter full name): ");
-        while (true) { 
+        while (true) {
             String userFullName = scanner.nextLine().trim();
             Customer customer = customersMaps[1].get(userFullName);
 
@@ -351,7 +351,7 @@ public class RunBank {
             }else{
                 System.out.print("User does not exist. Input a valid user: ");
             }
-            
+
         }
     }
 
@@ -377,7 +377,7 @@ public class RunBank {
         System.out.println("What is the account type? (Checking/Savings/Credit)");
         String accountType;
 
-        while (true) { 
+        while (true) {
             accountType = scanner.nextLine().trim();
             if(isValidAccountType(accountType)){
                 break;
@@ -388,16 +388,16 @@ public class RunBank {
         while (true) {
             System.out.print("Enter account number (or type 'exit' to cancel): ");
             String accountNumber = scanner.nextLine().trim();
-    
+
             if (accountNumber.equalsIgnoreCase("exit")) {
                 System.out.println("Operation cancelled.");
                 break;  // Exit the loop if the user types 'exit'.
             }
-    
+
             try {
                 int id = Integer.parseInt(accountNumber);
                 Account foundAccount = findAccountByTypeAndId(customersMaps[0], accountType, id);
-    
+
                 if (foundAccount != null) {
                     System.out.println(foundAccount.toString());
                     break;  // Exit the loop after finding a valid account.
@@ -424,7 +424,7 @@ public class RunBank {
      * @return trueif the account type is valid or false otherwise.
      */
     public static boolean isValidAccountType(String accountType) {
-       return (accountType.equalsIgnoreCase("Checking") || accountType.equalsIgnoreCase("Savings") || accountType.equalsIgnoreCase("Credit"));
+        return (accountType.equalsIgnoreCase("Checking") || accountType.equalsIgnoreCase("Savings") || accountType.equalsIgnoreCase("Credit"));
     }
 
     /**
@@ -486,9 +486,9 @@ public class RunBank {
     public static Account getAccountByChoice(Customer customer, String choice){
         Account account;
         if ("1".equals(choice)){
-            account = customer.getCheckingAccount(); 
+            account = customer.getCheckingAccount();
         }else if("2".equals(choice)){
-            account = customer.getSavingAccount(); 
+            account = customer.getSavingAccount();
         }else if("3".equals(choice)){
             account = customer.getCreditAccount();
         }else{
@@ -499,16 +499,16 @@ public class RunBank {
     }
 
     /**
-    * Adds a new user to the system by prompting for their personal information and generating new account numbers.
-    * This method creates a unique user ID, collects details such as name, date of birth, address, and phone number, 
-    * and generates unique account numbers for checking, credit, and savings accounts.
-    *
-    * @param scanner the Scanner object used to read input from the user
-    * @param customersMaps the HashMap that stores the customer data, organized by their unique identifiers
-    */
+     * Adds a new user to the system by prompting for their personal information and generating new account numbers.
+     * This method creates a unique user ID, collects details such as name, date of birth, address, and phone number,
+     * and generates unique account numbers for checking, credit, and savings accounts.
+     *
+     * @param scanner the Scanner object used to read input from the user
+     * @param customersMaps the HashMap that stores the customer data, organized by their unique identifiers
+     */
     private static void addNewUser(Scanner scanner, HashMap<String, Customer>[] customersMaps) {
         // Increment lastUserId for the new user (method located in Person class)
-        int maxId = Person.getMaxId() + 1; 
+        int maxId = Person.getMaxId() + 1;
         String idNumber = String.valueOf(maxId);
 
         // user information
@@ -537,8 +537,8 @@ public class RunBank {
         String phoneNumber = scanner.nextLine();
 
         //System.out.println(maxId); 
-        
-        
+
+
         int checkingAccountNumber = generateAccountNumber();
         int creditAccountNumber = generateAccountNumber();
         int savingsAccountNumber = generateAccountNumber();
@@ -549,7 +549,7 @@ public class RunBank {
         double checkingBalance = 0.0;
         double savingsBalance = 0.0;
 
-        
+
         // Generate random credit limit within the range
         double creditMax = determineCreditLimit(creditScore);
 
@@ -570,34 +570,34 @@ public class RunBank {
         appendCustomerToCSV(newCustomer);
 
     }
-    
+
     public static void appendCustomerToCSV(Customer customer) {
         try (FileWriter fw = new FileWriter("BankUsers.csv", true);
              PrintWriter writer = new PrintWriter(fw)) {
-    
+
             // start the row with customer basic details
             StringBuilder csvRow = new StringBuilder(String.join(",",
-                customer.getIdNumber(),
-                customer.getFirstName(),
-                customer.getLastName(),
-                customer.getDateOfBirth(),
-                customer.getAddress(),
-                customer.getPhoneNumber()
+                    customer.getIdNumber(),
+                    customer.getFirstName(),
+                    customer.getLastName(),
+                    customer.getDateOfBirth(),
+                    customer.getAddress(),
+                    customer.getPhoneNumber()
             ));
-    
+
             // loop through each account and append its details to the row, separated by commas
             for (Account account : customer.getAccounts()) {
                 csvRow.append(","); // Separate accounts with commas
                 csvRow.append(account.getAccountNum()).append(",")
-                       .append(account.getAccountType()).append(",")
-                       .append(account.getBalance());
+                        .append(account.getAccountType()).append(",")
+                        .append(account.getBalance());
             }
-    
+
             // this would be writing the code all in one line like in the csv file
             writer.println(csvRow.toString());
-    
+
             System.out.println("Customer with all accounts added to CSV file successfully.");
-    
+
         } catch (IOException e) {
             System.err.println("Error writing to CSV file: " + e.getMessage());
         }
@@ -625,46 +625,46 @@ public class RunBank {
     }
 
     /**
-    * Generates a unique account number by randomly selecting a number and ensuring it is not already in use.
-    * It uses a set of existing account numbers to check for duplicates and ensures that the generated number is unique.
-    *
-    * @return a unique account number
-    */
+     * Generates a unique account number by randomly selecting a number and ensuring it is not already in use.
+     * It uses a set of existing account numbers to check for duplicates and ensures that the generated number is unique.
+     *
+     * @return a unique account number
+     */
     private static int generateAccountNumber(){
         Random random = new Random();
-        int number = random.nextInt(9000); 
-        
-    
+        int number = random.nextInt(9000);
+
+
         while(Account.getSetAccountsNumbers().contains(random)){
             System.out.println(number);
-            number = random.nextInt(9000); 
+            number = random.nextInt(9000);
         }
         Account.addIdToAccountSet(number);
         return number;
     }
 
     /**
-    * Reads transactions from the "Transactions.csv" file and executes the corresponding action for each transaction.
-    * <p>
-    * The method processes each line of the CSV file, extracting the transaction details (such as sender, receiver, action, amount, etc.)
-    * and then performing the specified action (inquire balance, deposit, withdraw, transfer, or pay). It also includes error handling for invalid
-    * input formats and ensures that empty fields are treated as null.
-    * </p>
-    *
-    * <p>Possible actions are:</p>
-    * <ul>
-    *     <li><b>inquires</b>: Inquires about the balance of a specified account.</li>
-    *     <li><b>deposits</b>: Deposits a specified amount into a recipient's account.</li>
-    *     <li><b>withdraws</b>: Withdraws a specified amount from a sender's account.</li>
-    *     <li><b>transfers</b>: Transfers a specified amount from one account to another.</li>
-    *     <li><b>pays</b>: Pays a specified amount from one account to another.</li>
-    * </ul>
-    *
-    * <p>If the file cannot be found, a message is printed, and if any amount cannot be parsed as a number, that transaction is skipped.</p>
-    *
-    * @throws FileNotFoundException If the "Transactions.csv" file is not found.
-    * @throws Exception If an unexpected error occurs while processing the transactions.
-    */
+     * Reads transactions from the "Transactions.csv" file and executes the corresponding action for each transaction.
+     * <p>
+     * The method processes each line of the CSV file, extracting the transaction details (such as sender, receiver, action, amount, etc.)
+     * and then performing the specified action (inquire balance, deposit, withdraw, transfer, or pay). It also includes error handling for invalid
+     * input formats and ensures that empty fields are treated as null.
+     * </p>
+     *
+     * <p>Possible actions are:</p>
+     * <ul>
+     *     <li><b>inquires</b>: Inquires about the balance of a specified account.</li>
+     *     <li><b>deposits</b>: Deposits a specified amount into a recipient's account.</li>
+     *     <li><b>withdraws</b>: Withdraws a specified amount from a sender's account.</li>
+     *     <li><b>transfers</b>: Transfers a specified amount from one account to another.</li>
+     *     <li><b>pays</b>: Pays a specified amount from one account to another.</li>
+     * </ul>
+     *
+     * <p>If the file cannot be found, a message is printed, and if any amount cannot be parsed as a number, that transaction is skipped.</p>
+     *
+     * @throws FileNotFoundException If the "Transactions.csv" file is not found.
+     * @throws Exception If an unexpected error occurs while processing the transactions.
+     */
     private static void transactionReader() {
         try {
             Scanner user = new Scanner(System.in);
@@ -688,18 +688,18 @@ public class RunBank {
                 String toFirstName = (informationLine.length > 4) ? informationLine[4] : null;
                 String toLastName = (informationLine.length > 5) ? informationLine[5] : null;
                 String toWhere = (informationLine.length > 6) ? informationLine[6] : null;
-                double amount = (informationLine.length > 7 && informationLine[7] != null) ? Double.parseDouble(informationLine[7]) : 0.0; 
+                double amount = (informationLine.length > 7 && informationLine[7] != null) ? Double.parseDouble(informationLine[7]) : 0.0;
 
                 String fromFullName = fromFirstName + " " + fromLastName;
                 String toFullName = toFirstName + " " + toLastName;
-                
+
                 switch (action){
                     case "inquires" ->{
                         Customer.inquireBalancaTransaction(fromFullName, fromWhere);
                         break;
                     }
                     case "deposits" ->{
-                        Customer.depositsTransaction(toFullName, toWhere, amount); 
+                        Customer.depositsTransaction(toFullName, toWhere, amount);
                         break;
                     }
                     case "withdraws" ->{
@@ -727,18 +727,18 @@ public class RunBank {
     }
 
     /**
-    * This method prompts the bank manager to enter a customer's name and attempts to generate a bank statement for that customer.
-    * <p>
-    * The method continuously prompts for the customer's name until a valid customer is entered. If the customer is not found,
-    * it displays an error message and asks for the name again. Once a valid customer is provided, the method would ideally generate 
-    * a bank statement for that customer (though the functionality to generate the bank statement has yet to be implemented).
-    * </p>
-    *
-    * <p>If there is an input error (e.g., the user enters invalid input or there's an issue with retrieving the customer), 
-    * the method will handle it and prompt for input again.</p>
-    *
-    * @throws NoSuchElementException If there is an input error or the customer name does not exist in the customer map.
-    */
+     * This method prompts the bank manager to enter a customer's name and attempts to generate a bank statement for that customer.
+     * <p>
+     * The method continuously prompts for the customer's name until a valid customer is entered. If the customer is not found,
+     * it displays an error message and asks for the name again. Once a valid customer is provided, the method would ideally generate
+     * a bank statement for that customer (though the functionality to generate the bank statement has yet to be implemented).
+     * </p>
+     *
+     * <p>If there is an input error (e.g., the user enters invalid input or there's an issue with retrieving the customer),
+     * the method will handle it and prompt for input again.</p>
+     *
+     * @throws NoSuchElementException If there is an input error or the customer name does not exist in the customer map.
+     */
     private static void generateBankStatement(){
         Scanner scanner = new Scanner(System.in);
         while (true) {
@@ -760,7 +760,7 @@ public class RunBank {
                         writer.println("Date of Birth: " + customer.getDateOfBirth());
 
                         writer.println("\n--- Transaction History ---");
-                        
+
                         File file = new File(customer.getFirstName() + " " + customer.getLastName() + "_TransactionReport.txt");
                         Scanner fileScanner = new Scanner(file);
                         fileScanner.nextLine();
@@ -768,7 +768,7 @@ public class RunBank {
                             String line = fileScanner.nextLine();
                             writer.println(line);
                         }
-                        
+
 
                         System.out.println("Bank statement generated successfully for " + customer.getFirstName() + " " + customer.getLastName());
                     } catch (FileNotFoundException e) {
@@ -783,6 +783,6 @@ public class RunBank {
             }
 
         }
-        
+
     }
 }

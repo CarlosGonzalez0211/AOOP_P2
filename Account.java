@@ -5,11 +5,11 @@ import java.util.Set;
  * This class shows the different attributes and functionalities that an account has.
  * Thie class is inherited by Checking, Credit, and Saving, since they are all 
  * different types of accounts that each user has.
- * 
+ *
  * @author Daniela Castro Enriquez
  * @author Carlos Gonzalez
  * @author Aylin Rodriguez
- * 
+ *
  */
 public abstract class Account {
 
@@ -28,7 +28,7 @@ public abstract class Account {
     /** The type of the account, either a Checking, Savings, or Credit account. */
     private String accountType;
 
-     /**
+    /**
      * A set that stores unique account numbers for all accounts.
      * This helps to ensure that each account number is distinct across all accounts.
      */
@@ -80,7 +80,7 @@ public abstract class Account {
      * @param accountHolder   the owner of type Person of the account.
      * @param accountType     the type of the account, either a Checking, Savings, or Credit account.
      */
-    
+
     public Account(int accountNumber, double startingBalance, Person accountHolder, String accountType) {
         this.accountNumber = accountNumber;
         this.startingBalance = startingBalance;
@@ -92,7 +92,7 @@ public abstract class Account {
     /**
      * This method makes a withdrawal of a specified amount from an account.
      * It acts differently depending on the account (abstract method).
-     *      
+     *
      * @param amount the amount to withdraw
      * @return true if the withdrawal was successful, false if it was not processed correctly
      */
@@ -198,7 +198,7 @@ public abstract class Account {
         return this.accountType;
     }
 
-    
+
     /**
      * This method implements a string representation of the account, which shows the account number, type, and the account balance.
      *
@@ -207,7 +207,7 @@ public abstract class Account {
     @Override
     public String toString() {
         return "Account number: " + getAccountNum() + "\n" +
-               "Account type: " + getAccountType() + "\n" +
-               "Account current balance: " + getBalance();
+                "Account type: " + getAccountType() + "\n" +
+                "Account current balance: " + getBalance();
     }
 }

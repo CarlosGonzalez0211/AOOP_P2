@@ -130,6 +130,17 @@ Daniel C made a deposit on Checking-1080. Daniel C's new balance for Checking-10
 Daniel C made a deposit on Checking-1080. Daniel C's new balance for Checking-1080 is 919.74
 Daniel C transferred $39.0 from Checking to Savings
 Daniel C transferred $39.0 from Checking to Savings
+<<<<<<< HEAD
+=======
+Daniela Castro made a deposit on Savings-5678. Daniela Castro's new balance for Savings-5678 is 2500.0
+Daniela Castro made a deposit on Savings-5678. Daniela Castro's new balance for Savings-5678 is 2500.0
+Daniela Castro made a balance inquiry on their accounts.
+Daniela Castro made a balance inquiry on their accounts.
+Withdrawal of $200.0 from Checking account. New balance: $800.0
+Withdrawal of $200.0 from Checking account. New balance: $800.0
+Daniela Castro transferred $500.0 from Checking to Savings
+Daniela Castro transferred $500.0 from Checking to Savings
+>>>>>>> NewCarlos
 Successful transaction! Mickey Mouse paid $100.0 to Donald Duck from Checking account to Checking account.
 Successful Transaction! Mickey Mouse transferred: $400.0 from Savings account to Checking account
 Successful transaction! Mickey Mouse has inquired aboutSavings 's balance: 4079.46

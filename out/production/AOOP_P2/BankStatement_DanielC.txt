@@ -1,0 +1,17 @@
+--- Bank Statement ---
+Customer Name: Daniel C
+Address: "500 W. University Ave, El Paso, TX 79968"
+Phone Number: (915) 747-5044
+Date of Birth: 25-May-47
+
+--- Transaction History ---
+
+Final Account Balances:
+Account Checking (1080): $880.74
+Account Savings (2080): $381.74
+Account Credit (3080): $-505.40
+
+Transactions:
+Daniel C made a balance inquiry on their accounts.
+Daniel C made a deposit on Checking-1080. Daniel C's new balance for Checking-1080 is 919.74
+Daniel C transferred $39.0 from Checking to Savings

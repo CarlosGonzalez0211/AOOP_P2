@@ -11,12 +11,11 @@ import java.util.Set;
  * The PopulationHashmap class is responsible for reading customer data from a CSV file
  * and populating two HashMaps: one using the customer's identification number as the key
  * and another using the customer's full name as the key.
- * 
+ *
  * @author Daniela Castro Enriquez
  * @author Carlos Gonzalez
  * @author Aylin Rodriguez
- * @author Contributor Joel Martinez (El mero vergas)
- * 
+ *
  */
 public class PopulationHashmap {
 
@@ -52,14 +51,14 @@ public class PopulationHashmap {
             int creditStartingBalanceIdx = findIndex(titles, "Credit Starting Balance");
             int creditMaxIdx = findIndex(titles, "Credit Max");
 
-           
+
             while (informationIndeces.hasNextLine()) {
                 String[] userInformation = informationIndeces.nextLine().split(",(?=(?:[^\\\"]*\\\"[^\\\"]*\\\")*[^\\\"]*$)");
 
                 String idNumber = userInformation[idNumberIdx];
                 String firstName = userInformation[firstNameIdx];
                 String lastName = userInformation[lastNameIdx];
-                String fullName = firstName + " " + lastName; 
+                String fullName = firstName + " " + lastName;
                 String dateOfBirth = userInformation[dateOfBirthIdx];
                 String address = userInformation[addressIdx];
                 String phoneNumber = userInformation[phoneNumberIdx];
@@ -78,9 +77,9 @@ public class PopulationHashmap {
                 Account[] userAccounts = {checkingAccount, savingAccount, creditAccount};
                 Customer bankCustomer = new Customer(idNumber, firstName, lastName, dateOfBirth, address, phoneNumber, userAccounts);
 
-                
-                idMap.put(idNumber, bankCustomer);      
-                nameMap.put(fullName, bankCustomer);     
+
+                idMap.put(idNumber, bankCustomer);
+                nameMap.put(fullName, bankCustomer);
                 Account.addToAccountNumbers(savingAccount.getAccountNum(), checkingAccount.getAccountNum(), creditAccount.getAccountNum());
             }
 
@@ -93,7 +92,7 @@ public class PopulationHashmap {
         //printHashMap("Name Map", nameMap);
         printSet(Account.getSetAccountsNumbers());
 
-       
+
         return new HashMap[]{idMap, nameMap};
     }
 
@@ -112,7 +111,7 @@ public class PopulationHashmap {
                             "Credit Account Number,Credit Max,Credit Starting Balance\n"
             );
 
-            
+
             for (Customer customer : customerMap.values()) {
                 Checking checking = customer.getCheckingAccount();
                 Saving savings = customer.getSavingAccount();
@@ -151,7 +150,7 @@ public class PopulationHashmap {
                 return i;
             }
         }
-        return -1; 
+        return -1;
     }
 
     /**
@@ -187,10 +186,10 @@ public class PopulationHashmap {
     }
 
     /**
-    * Prints each account number from the given set of account numbers.
-    * 
-    * @param accountsNumbers a Set of account numbers to be printed.
-    */
+     * Prints each account number from the given set of account numbers.
+     *
+     * @param accountsNumbers a Set of account numbers to be printed.
+     */
     public static void printSet(Set<Integer> accountsNumbers){
         for (int id:accountsNumbers) {
             System.out.println(id);
