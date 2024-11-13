@@ -1,5 +1,8 @@
 /**
  * Withdrawable interface defines withdrawal-related methods for accounts.
+ * @author Daniela Castro Enriquez
+ * @author Carlos Gonzalez
+ * @author Aylin Rodriguez
  */
 public interface Withdrawable {
 /**

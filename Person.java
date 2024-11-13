@@ -27,8 +27,13 @@ public class Person {
     /** The phone number of the person. */
     private String phoneNumber;
 
+    /** The city where the person resides. */
     private String city;
+
+    /** The state where the person resides. */
     private String state;
+
+    /** The zip code of the persons address. */
     private String zip;
     
     private static String maxID = "-1";
@@ -52,6 +57,23 @@ public class Person {
             this.phoneNumber = phoneNumber;
             setMaxID(idNumber);
         }
+        /**
+        * Constructs a new Person object with the specified details.
+        * 
+        * This constructor initializes a Person object with the provided information such as
+        * ID number, name, date of birth, address, and phone number. This constructor is used
+        * to create a Person with personal details which are used in various classes like Customer.
+        * 
+        * @param idNumber the identification number of the person
+        * @param firstName the first name of the person.
+        * @param lastName the last name of the person.
+        * @param dateOfBirth the date of birth of the person (in string format).
+        * @param address the home address of the person.
+        * @param city the city where the person resides.
+        * @param state the state where the person resides.
+        * @param zip the postal code for the person's address.
+        * @param phoneNumber the phone number of the person.
+        */
 
         public Person(String idNumber, String firstName, String lastName, String dateOfBirth, String address, String city, String state, String zip, String phoneNumber) {
             this.idNumber = idNumber;
@@ -111,14 +133,29 @@ public class Person {
             this.address = address;
         } 
 
+        /**
+        * This method sets the city of the person.
+        *
+        * @param city the city
+        */
         public void setCity(String city) {
             this.city = city;
         }
 
+        /**
+        * This method sets the state of the person.
+        *
+        * @param state the state
+        */
         public void setState(String state) {
             this.state = state;
         }
 
+        /**
+        * This method sets the zip code of the person.
+        *
+        * @param zip the zip code
+        */
         public void setZip(String zip) {
             this.zip = zip;
         }
@@ -132,7 +169,11 @@ public class Person {
             this.phoneNumber = phoneNumber;
         }
     
-    
+        /**
+        * This method sets the maximum ID if the incoming ID is greater than the current maximum ID.
+        *
+        * @param incomingMaxID the incoming ID to compare and set as the new maximum if it's greater
+        */
         public void setMaxID(String incomingMaxID){
             int parsedMaxID = Integer.parseInt(this.maxID);
             int currentMaxID = Integer.parseInt(incomingMaxID);
@@ -141,6 +182,11 @@ public class Person {
             }
         }
     
+        /**
+        * This method retrieves the current maximum ID.
+        *
+        * @return the current maximum ID as an integer
+        */
         public static int getMaxId(){
             return Integer.parseInt(maxID);
     }
