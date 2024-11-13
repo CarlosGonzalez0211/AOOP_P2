@@ -28,19 +28,39 @@ public abstract class Account {
     /** The type of the account, either a Checking, Savings, or Credit account. */
     private String accountType;
 
+   /** 
+     * A set containing unique account numbers.
+     */
     private static Set<Integer> accountNumbers = new HashSet<>();
-    
-    public static void addToAccountNumbers(int savingsNum, int checkingNum, int creditNum){
+
+    /**
+     * Adds savings, checking, and credit account numbers to the set of unique account numbers.
+     *
+     * @param savingsNum the savings account number to be added
+     * @param checkingNum the checking account number to be added
+     * @param creditNum the credit account number to be added
+     */
+    public static void addToAccountNumbers(int savingsNum, int checkingNum, int creditNum) {
         accountNumbers.add(savingsNum);
         accountNumbers.add(checkingNum);
         accountNumbers.add(creditNum);
     }
 
-    public static void addIdToAccountSet(int idNumber){
+    /**
+     * Adds an individual account identifier (ID number) to the set of unique account numbers.
+     *
+     * @param idNumber the ID number to be added to the set
+     */
+    public static void addIdToAccountSet(int idNumber) {
         accountNumbers.add(idNumber);
     }
 
-    public static Set<Integer> getSetAccountsNumbers(){
+    /**
+     * Retrieves the set of unique account numbers.
+     *
+     * @return a set of unique account numbers
+     */
+    public static Set<Integer> getSetAccountsNumbers() {
         return accountNumbers;
     }
     /**

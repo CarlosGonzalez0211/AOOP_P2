@@ -22,14 +22,39 @@ public class Log {
      * The path to the log file where messages are recorded.
      */
     public static final String LOG_FILE = "log.txt";
+
+    /**
+     * A list of general transaction log entries.
+     */
     public static List<String> transactions = new ArrayList<>();
+
+    /**
+     * A list of accounts used for transaction tracking.
+     */
     public static List<Account> accounts = new ArrayList<>();
+
+    /**
+     * A map storing user-specific transactions, where the key is the user's name and
+     * the value is a list of transactions associated with that user.
+     */
     public static Map<String, List<String>> userTransactions = new HashMap<>(); // Store user-specific transactions
 
+    /**
+     * Retrieves the list of general transactions.
+     *
+     * @return a list of general transactions
+     */
     public static List<String> getTransactions(){
         return transactions;
     }
 
+    /**
+     * Logs a user-specific transaction message. If no transactions have been logged
+     * for the user, initializes a new transaction list for that user.
+     *
+     * @param userName   the name of the user whose transaction is being logged
+     * @param logMessage the transaction message to be logged
+     */
     public static void logUserTransaction(String userName, String logMessage) {
         if (logMessage == null || logMessage.isEmpty()) {
             System.out.println("Empty log message for user " + userName + ". Nothing to log.");
@@ -74,6 +99,14 @@ public class Log {
         }
     }
 
+    /**
+     * Creates a user-specific transaction file containing their transactions and account balances.
+     * The file is named according to the user's name.
+     *
+     * @param userName      the name of the user
+     * @param userAccounts  the list of accounts for the user
+     * @param transactions  the list of transactions to write
+     */
     public static void createUserTransactionFile(String userName, List<Account> userAccounts, List<String> transactions) {
         // File name for the user-specific transaction log
         List<String> transactionsList = userTransactions.getOrDefault(userName, new ArrayList<>());
@@ -111,10 +144,23 @@ public class Log {
         
     }
 
+    /**
+     * Retrieves a list of transactions for the specified user.
+     *
+     * @param userName the name of the user
+     * @return a list of transactions for the specified user, or an empty list if none are found
+     */
     public static List<String> getUserTransactions(String userName) {
         return userTransactions.getOrDefault(userName, new ArrayList<>());
     }
 
+    /**
+     * Creates and writes a user-specific transactions file. This file contains a header
+     * and a list of transactions made by the user. The file is overwritten each time.
+     *
+     * @param userName     the name of the user
+     * @param transactions the list of transactions to write
+     */
     public static void createUserTransactionsFile(String userName, List<String> transactions) {
         // File name for the user-specific transactions file
         String fileName = userName + "_Transactions.txt";
