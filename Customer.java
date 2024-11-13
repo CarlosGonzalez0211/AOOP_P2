@@ -106,7 +106,9 @@ public class Customer extends Person {
         System.out.println(customer.getCreditAccount().toString() + "\n");
 
         String name = customer.getFirstName() + " " + customer.getLastName();
-        Log.logEntries(name + " made a balance inquiry on their accounts.");
+        String message = name + " made a balance inquiry on their accounts."; 
+        Log.logEntries(message);
+        Log.logUserTransaction(name, message);
     }
     /**
      * This method deposits a specified amount into the given account.
@@ -150,8 +152,10 @@ public class Customer extends Person {
         account.setBalance(account.getBalance() - amount);
         // Display updated balance without further subtraction
         System.out.println("New " + account.getAccountType() + " account balance: $" + account.getBalance());
-        Log.logEntries("Withdrawal of $" + amount + " from " + account.getAccountType() + " account. New balance: $" + account.getBalance());
         
+        String message = "Withdrawal of $" + amount + " from " + account.getAccountType() + " account. New balance: $" + account.getBalance();
+        Log.logEntries(message);
+        Log.logUserTransaction(customer.getFirstName() + " " + customer.getLastName(), message);
     }
 
     public static void makeTransfer(Customer customer, Scanner scanner) {
@@ -210,7 +214,9 @@ public class Customer extends Person {
         // Log and confirm
         System.out.println("Transfer successful!");
         String name = customer.getFirstName() + " " + customer.getLastName();
-        Log.logEntries(name + " transferred $" + amount + " from " + accountFrom.getAccountType() + " to " + accountTo.getAccountType());
+        String message = name + " transferred $" + amount + " from " + accountFrom.getAccountType() + " to " + accountTo.getAccountType();
+        Log.logEntries(message);
+        Log.logUserTransaction(name, message);
         
         // Display updated balances
         System.out.println("New balance for " + accountFrom.getAccountType() + " account: $" + accountFrom.getBalance());
@@ -273,8 +279,12 @@ public class Customer extends Person {
 
         System.out.println("Payment successful!");
         String name = customer.getFirstName() + " " + customer.getLastName();
-        Log.logEntries(name + " paid $" + amount + " to " + recipientName + " from " + accountFrom.getAccountType() + " account to " + accountTo.getAccountType() + " account.");
-}
+        
+        String message = name + " paid $" + amount + " to " + recipientName + " from " + accountFrom.getAccountType() + " account to " + accountTo.getAccountType() + " account.";
+        Log.logEntries(message);
+        Log.logUserTransaction(name, message);
+
+    }
 
     private static double withdrawMoney(Account account, Scanner scanner) {
         System.out.print("Input amount to withdraw: ");
@@ -289,10 +299,10 @@ public class Customer extends Person {
             while (amount > maxCreditAvailable) {
                 System.out.println("Amount exceeds available credit: $" + maxCreditAvailable);
                 System.out.print("Input a valid amount: ");
-        //Works to validate amount (negative amounts)
+        
             }
         }
-        return amount; //PENDING
+        return amount; 
     }
 
     private static double validateAmount(double amount, Scanner scanner, Account account){
@@ -347,7 +357,9 @@ public class Customer extends Person {
             payerAccount.setBalance(payerAccount.getBalance() - amount);
             payeeAccount.setBalance(payeeAccount.getBalance() + amount);
             
-            System.out.println("Successful transaction! " + fromUser + " paid $" + amount + " to " + toUser + " from " + payerAccount.getAccountType() + " account to " + payeeAccount.getAccountType() + " account.");
+            String message = "Successful transaction! " + fromUser + " paid $" + amount + " to " + toUser + " from " + payerAccount.getAccountType() + " account to " + payeeAccount.getAccountType() + " account.";
+            Log.logEntries(message);
+            Log.logUserTransaction(fromUser, message);
         }
 
         }
@@ -376,14 +388,14 @@ public class Customer extends Person {
         Customer payee;
 
         if (!nameMap.containsKey(fromUser)){
-            System.out.println("Failed transaction: user " + fromUser + " does not exist.");
+            Log.logEntries("Failed transaction: user " + fromUser + " does not exist.");
             return;
         }else{
             payer = nameMap.get(fromUser);
         }
 
         if (!nameMap.containsKey(toUser)){
-            System.out.println("Failed transaction: user " + toUser + " does not exist.");
+            Log.logEntries("Failed transaction: user " + toUser + " does not exist.");
             return;
         }else{
             payee = nameMap.get(toUser);
@@ -393,12 +405,15 @@ public class Customer extends Person {
         Account payeeAccount = accountTypeTransaction(payee, toAccount);
 
         if(amount <= 0 || amount > payerAccount.getBalance()){
-            System.out.println("Failed transaction: amount is less than 0 or more than the payer's account balance (" + payerAccount.getBalance() + ") ");
+            Log.logEntries("Failed transaction: amount is less than 0 or more than the payer's account balance (" + payerAccount.getBalance() + ") ");
             return;
         }else{
             payerAccount.setBalance(payerAccount.getBalance() - amount);
             payeeAccount.setBalance(payerAccount.getBalance() + amount);
-            System.out.println("Successful Transaction! " + fromUser + " transferred: $" + amount + " from " + payerAccount.getAccountType() + " account to " + payeeAccount.getAccountType() + " account");
+            
+            String message = "Successful Transaction! " + fromUser + " transferred: $" + amount + " from " + payerAccount.getAccountType() + " account to " + payeeAccount.getAccountType() + " account";
+            Log.logEntries(message);
+            Log.logUserTransaction(fromUser, message);
 
             
         }
@@ -406,49 +421,50 @@ public class Customer extends Person {
 
     public static void depositsTransaction(String toUser, String toAccount, double amount){
         if(!nameMap.containsKey(toUser)){
-            System.out.println("Transaction failed: no user with that name.");
+            Log.logEntries("Transaction failed: no user with that name.");
         }
 
         Customer user = nameMap.get(toUser);
         Account userAccount = accountTypeTransaction(user, toAccount);
-
-        if(amount <= 0 || amount > userAccount.getBalance()){
-            System.out.println("Failed transaction: amount is less than 0 or more than the payer's account balance (" + userAccount.getBalance() + ") ");
-            return;
-        }
-
         userAccount.setBalance(userAccount.getBalance() + amount);
-        System.out.println("Successful Transaction! $" + amount + " has been deposited into " + toUser + " 's " + toAccount);
+
+        String message = "Successful Transaction! $" + amount + " has been deposited into " + toUser + " 's " + toAccount;
+        Log.logEntries(message);
+        Log.logUserTransaction(toUser, message);
 
     }
 
     public static void withdrawTransaction(String fromUser, String fromAccount, double amount){
         if(!nameMap.containsKey(fromUser)){
-            System.out.println("Transaction failed: no user with that name.");
+            Log.logEntries("Transaction failed: no user with that name.");
         }
 
         Customer user = nameMap.get(fromUser);
         Account userAccount = accountTypeTransaction(user, fromAccount);
 
         if(amount <= 0 || amount > userAccount.getBalance()){
-            System.out.println("Failed transaction: amount is less than 0 or more than the payer's account balance (" + userAccount.getBalance() + ") ");
+            Log.logEntries("Failed transaction: amount is less than 0 or more than the payer's account balance (" + userAccount.getBalance() + ") ");
             return;
         }
 
         userAccount.setBalance(userAccount.getBalance() + amount);
-        System.out.println("Successful Transaction! $" + amount + " has been deposited into " + fromUser + " 's " + fromAccount);
+        
+        String message = "Successful Transaction! $" + amount + " has been deposited into " + fromUser + " 's " + fromAccount;
+        Log.logEntries(message);
+        Log.logUserTransaction(fromUser, message);
 
     }
 
     public static void inquireBalancaTransaction(String fromUser, String fromAccount){
         if(!nameMap.containsKey(fromUser)){
-            System.out.println("Transaction failed: no user with that name.");
+            Log.logEntries("Transaction failed: no user with that name.");
         }
 
         Customer user = nameMap.get(fromUser);
         Account userAccount = accountTypeTransaction(user, fromAccount);
 
-        System.out.println("Successful transaction! " + fromUser + " has inquired about" + fromAccount +" 's balance: " + userAccount.getBalance());
-
+        String message = "Successful transaction! " + fromUser + " has inquired about" + fromAccount +" 's balance: " + userAccount.getBalance();
+        Log.logEntries(message);
+        Log.logUserTransaction(fromUser, message);
     }
 }

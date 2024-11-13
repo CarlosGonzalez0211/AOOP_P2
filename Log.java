@@ -42,4 +42,26 @@ public class Log {
             System.out.println("Failed to write to log file: " + e.getMessage());
         }
     }
+
+    public static void logUserTransaction(String userName, String logMessage) {
+        if (logMessage == null || logMessage.isEmpty()) {
+            System.out.println("Empty log message for user " + userName + ". Nothing to log.");
+            return;
+        }
+
+        // User-specific log file name
+        String userLogFile = userName + "_transactions.txt";
+
+        // Append the message to the user-specific log file
+        appendToFile(userLogFile, logMessage);
+    }
+
+    private static void appendToFile(String fileName, String logMessage) {
+        try (BufferedWriter textWriter = new BufferedWriter(new FileWriter(fileName, true))) {
+            textWriter.write(logMessage);
+            textWriter.newLine();  // Move to the next line
+        } catch (IOException e) {
+            System.out.println("Failed to write to file: " + fileName + " Error: " + e.getMessage());
+        }
+    }
 }
