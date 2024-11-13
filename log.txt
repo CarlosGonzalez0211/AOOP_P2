@@ -97,3 +97,4 @@ Daniel A paid $20.0 to Derek Aguirre from Credit account to Savings account.
 Daniel A transferred $786.95 from Credit to Savings
 Daniel A transferred $786.95 from Credit to Savings
 Withdrawal of $20.0 from Checking account. New balance: $837.56
+Withdrawal of $20.0 from Checking account. New balance: $65.09
