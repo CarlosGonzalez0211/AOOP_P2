@@ -301,6 +301,7 @@ public class RunBank {
                 addNewUser(scanner, customersMaps);
             }else if(userInput.equalsIgnoreCase("D")){
                 transactionReader();
+                break;
             }else{
                 System.out.println("Invalid choice. Input a valid option (A/B): ");
             }
@@ -558,54 +559,58 @@ public class RunBank {
             Scanner scanner = new Scanner(new File("Transactions.csv"));
             String infoHeaders = scanner.nextLine();
             String[] headers = infoHeaders.split(",");
+            System.out.println(headers.length);
 
             while (scanner.hasNextLine()){
+
                 String[] informationLine = scanner.nextLine().split(",");
-                String fromFirstName = informationLine[0].isEmpty()? null : informationLine[0];
-                String fromLastName = informationLine[1].isEmpty()? null : informationLine[1];
-                String fromWhere = informationLine[2].isEmpty()? null : informationLine[2];
-                String action = informationLine[3].isEmpty()? null : informationLine[3];
-                String toFirstName = informationLine[4].isEmpty()? null : informationLine[4];
-                String toLastName = informationLine[5].isEmpty()? null : informationLine[5];
-                String toWhere = informationLine[6].isEmpty()? null : informationLine[6];
+                for (int i = 0; i < informationLine.length; i++) {
+                    if (informationLine[i].trim().isEmpty()) {
+                        informationLine[i] = null; // Replace with null or any default value
+                    }
+                }
+                String fromFirstName = (informationLine.length > 0) ? informationLine[0] : null;
+                String fromLastName = (informationLine.length > 1) ? informationLine[1] : null;
+                String fromWhere = (informationLine.length > 2) ? informationLine[2] : null;
+                String action = (informationLine.length > 3) ? informationLine[3] : null;
+                String toFirstName = (informationLine.length > 4) ? informationLine[4] : null;
+                String toLastName = (informationLine.length > 5) ? informationLine[5] : null;
+                String toWhere = (informationLine.length > 6) ? informationLine[6] : null;
+                double amount = (informationLine.length > 7 && informationLine[7] != null) ? Double.parseDouble(informationLine[7]) : 0.0; 
+
                 String fromFullName = fromFirstName + " " + fromLastName;
                 String toFullName = toFirstName + " " + toLastName;
-                double amount = Double.parseDouble(informationLine[7]);
-            
-
+                
                 switch (action){
                     case "inquires" ->{
-                        Customer.inquireBalance(customersMap[1].get(fromFullName)); //modify methods for bank manager
+                        Customer.inquireBalancaTransaction(fromFullName, fromWhere);
                         break;
                     }
                     case "deposits" ->{
-                        Customer.makeDeposit(customersMap[1].get(toLastName), user); //override/ overload
+                        Customer.depositsTransaction(toFullName, toWhere, amount); 
                         break;
                     }
                     case "withdraws" ->{
-                        Customer.makeWithdrawal(customersMap[1].get(toLastName), user);
+                        Customer.withdrawTransaction(fromFullName, fromWhere, amount);
                         break;
                     }
                     case "transfers" ->{
-                        Customer.makeTransfer(customersMap[1].get(toLastName), scanner);
+                        Customer.makeTransferTransaction(fromFullName, toFullName, fromWhere, toWhere, amount);
                         break;
                     }
 
                     case "pays" ->{
                         Customer.paySomeoneTransaction(fromFullName, toFullName, fromWhere, toWhere, amount);
                         break;
-
                     }
-
-                    //default
+                    default ->{
+                        break;
+                    }
                 }
             }
-
-
+            return;
         } catch (FileNotFoundException e) {
             System.out.println("Transactions file not found.");
         }
-       
-        
     }
 }
