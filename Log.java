@@ -87,10 +87,9 @@ public class Log {
             return;
         }
 
-        // Print the log message to the console
+       
         System.out.println(logMessage);
 
-        // Write the log message to the log file
         try (BufferedWriter textWriter = new BufferedWriter(new FileWriter(LOG_FILE, true))) {
             textWriter.write(logMessage);
             textWriter.newLine();  // Move to the next line
