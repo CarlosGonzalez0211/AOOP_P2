@@ -11,12 +11,11 @@ import java.util.Set;
  * The PopulationHashmap class is responsible for reading customer data from a CSV file
  * and populating two HashMaps: one using the customer's identification number as the key
  * and another using the customer's full name as the key.
- * 
+ *
  * @author Daniela Castro Enriquez
  * @author Carlos Gonzalez
  * @author Aylin Rodriguez
- * @author Contributor Joel Martinez (El mero vergas)
- * 
+ *
  */
 public class PopulationHashmap {
 
@@ -52,14 +51,14 @@ public class PopulationHashmap {
             int creditStartingBalanceIdx = findIndex(titles, "Credit Starting Balance");
             int creditMaxIdx = findIndex(titles, "Credit Max");
 
-            // Process each line of the CSV file
+
             while (informationIndeces.hasNextLine()) {
                 String[] userInformation = informationIndeces.nextLine().split(",(?=(?:[^\\\"]*\\\"[^\\\"]*\\\")*[^\\\"]*$)");
 
                 String idNumber = userInformation[idNumberIdx];
                 String firstName = userInformation[firstNameIdx];
                 String lastName = userInformation[lastNameIdx];
-                String fullName = firstName + " " + lastName; // Add space between first and last name
+                String fullName = firstName + " " + lastName;
                 String dateOfBirth = userInformation[dateOfBirthIdx];
                 String address = userInformation[addressIdx];
                 String phoneNumber = userInformation[phoneNumberIdx];
@@ -71,7 +70,6 @@ public class PopulationHashmap {
                 double creditStartingBalance = Double.parseDouble(userInformation[creditStartingBalanceIdx]);
                 double creditMax = Double.parseDouble(userInformation[creditMaxIdx]);
 
-                // Create instances of Person, Checking, Saving, Credit, and Customer
                 Person basicInformationUser = new Person(idNumber, firstName, lastName, dateOfBirth, address, phoneNumber);
                 Checking checkingAccount = new Checking(checkingAccountNumber, checkingStartingBalance, basicInformationUser);
                 Saving savingAccount = new Saving(savingsAccountNumber, savingsStartingBalance, basicInformationUser);
@@ -79,9 +77,9 @@ public class PopulationHashmap {
                 Account[] userAccounts = {checkingAccount, savingAccount, creditAccount};
                 Customer bankCustomer = new Customer(idNumber, firstName, lastName, dateOfBirth, address, phoneNumber, userAccounts);
 
-                // Populate both HashMaps
-                idMap.put(idNumber, bankCustomer);       // Use ID as key
-                nameMap.put(fullName, bankCustomer);     // Use full name as key
+
+                idMap.put(idNumber, bankCustomer);
+                nameMap.put(fullName, bankCustomer);
                 Account.addToAccountNumbers(savingAccount.getAccountNum(), checkingAccount.getAccountNum(), creditAccount.getAccountNum());
             }
 
@@ -94,7 +92,7 @@ public class PopulationHashmap {
         //printHashMap("Name Map", nameMap);
         printSet(Account.getSetAccountsNumbers());
 
-        // Return an array of HashMap<String, Customer>
+
         return new HashMap[]{idMap, nameMap};
     }
 
@@ -106,7 +104,6 @@ public class PopulationHashmap {
      */
     public static void writeToCSV(String fileName, HashMap<String, Customer> customerMap) {
         try (FileWriter writer = new FileWriter(fileName)) {
-            // Write the CSV header
             writer.write(
                     "Identification Number,First Name,Last Name,Date of Birth,Address,Phone Number," +
                             "Checking Account Number,Checking Starting Balance," +
@@ -114,14 +111,12 @@ public class PopulationHashmap {
                             "Credit Account Number,Credit Max,Credit Starting Balance\n"
             );
 
-            // Write each customer's data
+
             for (Customer customer : customerMap.values()) {
-                // Retrieve the accounts associated with the customer
                 Checking checking = customer.getCheckingAccount();
                 Saving savings = customer.getSavingAccount();
                 Credit credit = customer.getCreditAccount();
 
-                // Build a row with all necessary details
                 String row =
                         customer.getIdNumber() + "," +
                                 customer.getFirstName() + "," +
@@ -155,7 +150,7 @@ public class PopulationHashmap {
                 return i;
             }
         }
-        return -1; // No title found
+        return -1;
     }
 
     /**
@@ -190,6 +185,11 @@ public class PopulationHashmap {
         }
     }
 
+    /**
+     * Prints each account number from the given set of account numbers.
+     *
+     * @param accountsNumbers a Set of account numbers to be printed.
+     */
     public static void printSet(Set<Integer> accountsNumbers){
         for (int id:accountsNumbers) {
             System.out.println(id);

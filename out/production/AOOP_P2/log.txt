@@ -80,3 +80,223 @@ Daniela Castro made a deposit on Checking-1234. Daniela Castro's new balance for
 Daniela Castro made a balance inquiry on their accounts.
 Daniela Castro transferred: $1000.0 from Checking account to Savings account
 Withdrawal successful of $500.0 from Checking account. New Checking account balance: $500.0
+Daniela Castro made a deposit on Checking-1234. Daniela Castro's new balance for Checking-1234 is 1500.0
+Daniela Castro made a balance inquiry on their accounts.
+Daniela Castro transferred: $1000.0 from Checking account to Savings account
+Withdrawal successful of $500.0 from Checking account. New Checking account balance: $500.0
+Withdrawal successful of $857.56 from Checking account. New Checking account balance: $0.0
+Daniel A paid $20.0 to Daniel A from Savings account to Savings account.
+Withdrawal of $20.0 from Credit account. New balance: $-806.93
+Withdrawal of $20.0 from Credit account. New balance: $-806.93
+Daniel A transferred $20.0 from Credit to Savings
+Daniel A made a deposit on Checking-1078. Daniel A's new balance for Checking-1078 is 877.56
+Daniel A transferred $20.0 from Credit to Credit
+Withdrawal of $20.0 from Credit account. New balance: $-806.93
+Daniel A transferred $20.0 from Credit to Savings
+Daniel A paid $20.0 to Derek Aguirre from Credit account to Savings account.
+Daniel A transferred $786.95 from Credit to Savings
+Daniel A transferred $786.95 from Credit to Savings
+Withdrawal of $20.0 from Checking account. New balance: $837.56
+Withdrawal of $20.0 from Checking account. New balance: $65.09
+Alex Avila made a balance inquiry on their accounts.
+Alex Avila made a balance inquiry on their accounts.
+Alex Avila made a balance inquiry on their accounts.
+Alex Avila transferred $30.0 from Checking to Savings
+Alex Avila made a deposit on Checking-1037. Alex Avila's new balance for Checking-1037 is 115.09
+Alex Avila made a balance inquiry on their accounts.
+Withdrawal of $20.0 from Checking account. New balance: $95.09
+Alex Avila transferred $15.0 from Checking to Savings
+Alex Avila paid $17.0 to Daniel B from Checking account to Savings account.
+Brandon Bustamante made a balance inquiry on their accounts.
+Brandon Bustamante made a balance inquiry on their accounts.
+Brandon Bustamante made a deposit on Checking-1043. Brandon Bustamante's new balance for Checking-1043 is 375.39
+Brandon Bustamante made a balance inquiry on their accounts.
+Brandon Bustamante paid $32.0 to Daniel B from Checking account to Savings account.
+Daniel B made a balance inquiry on their accounts.
+Daniel B made a balance inquiry on their accounts.
+Daniel B made a deposit on Checking-1079. Daniel B's new balance for Checking-1079 is 382.4
+Daniel B made a deposit on Checking-1079. Daniel B's new balance for Checking-1079 is 382.4
+Withdrawal of $10.0 from Checking account. New balance: $372.4
+Withdrawal of $10.0 from Checking account. New balance: $372.4
+Daniel B paid $23.0 to Brandon Bustamante from Checking account to Savings account.
+Daniel B paid $23.0 to Brandon Bustamante from Checking account to Savings account.
+Daniel A made a balance inquiry on their accounts.
+Daniel A made a balance inquiry on their accounts.
+Daniel A made a balance inquiry on their accounts.
+Daniel A made a balance inquiry on their accounts.
+Daniel C made a balance inquiry on their accounts.
+Daniel C made a balance inquiry on their accounts.
+Daniel C made a deposit on Checking-1080. Daniel C's new balance for Checking-1080 is 919.74
+Daniel C made a deposit on Checking-1080. Daniel C's new balance for Checking-1080 is 919.74
+Daniel C transferred $39.0 from Checking to Savings
+Daniel C transferred $39.0 from Checking to Savings
+Daniela Castro made a deposit on Savings-5678. Daniela Castro's new balance for Savings-5678 is 2500.0
+Daniela Castro made a deposit on Savings-5678. Daniela Castro's new balance for Savings-5678 is 2500.0
+Daniela Castro made a balance inquiry on their accounts.
+Daniela Castro made a balance inquiry on their accounts.
+Withdrawal of $200.0 from Checking account. New balance: $800.0
+Withdrawal of $200.0 from Checking account. New balance: $800.0
+Daniela Castro transferred $500.0 from Checking to Savings
+Daniela Castro transferred $500.0 from Checking to Savings
+Successful transaction! Mickey Mouse paid $100.0 to Donald Duck from Checking account to Checking account.
+Successful Transaction! Mickey Mouse transferred: $400.0 from Savings account to Checking account
+Successful transaction! Mickey Mouse has inquired aboutSavings 's balance: 4079.46
+Successful Transaction! $100.0 has been deposited into Mickey Mouse 's Checking
+Successful Transaction! $500.0 has been deposited into Mickey Mouse 's Savings
+Successful Transaction! Mickey Mouse transferred: $300.0 from Savings account to Credit account
+Successful Transaction! $5000.0 has been deposited into Alberto Miranda 's Checking
+Successful Transaction! $5000.0 has been deposited into Alex Avila 's Checking
+Successful Transaction! $5000.0 has been deposited into Alfonso Beltran 's Checking
+Successful Transaction! $5000.0 has been deposited into Alfredo Rodriguez 's Checking
+Successful Transaction! $5000.0 has been deposited into Alyssandra Cordero 's Checking
+Successful Transaction! $5000.0 has been deposited into Anthony Jasso 's Checking
+Successful Transaction! $5000.0 has been deposited into Arae Zarzosa 's Checking
+Successful Transaction! $5000.0 has been deposited into Brandon Bustamante 's Checking
+Successful Transaction! $5000.0 has been deposited into Cesar Cabrera 's Checking
+Successful Transaction! $5000.0 has been deposited into Christopher Reyes 's Checking
+Successful Transaction! $5000.0 has been deposited into Dafne Bencomo 's Checking
+Successful Transaction! $5000.0 has been deposited into David Baptiste 's Checking
+Successful Transaction! $5000.0 has been deposited into Derek Aguirre 's Checking
+Successful Transaction! $5000.0 has been deposited into Eduardo Garcia 's Checking
+Successful Transaction! $5000.0 has been deposited into Ervey Montes 's Checking
+Successful Transaction! $5000.0 has been deposited into Estevan Ramos 's Checking
+Successful Transaction! $5000.0 has been deposited into Federico Marin 's Checking
+Successful Transaction! $5000.0 has been deposited into Gavin Baechle 's Checking
+Successful Transaction! $5000.0 has been deposited into Gildardo Orea 's Checking
+Successful Transaction! $5000.0 has been deposited into Grecia Navarrete 's Checking
+Successful Transaction! $5000.0 has been deposited into Hernan Garcia 's Checking
+Successful Transaction! $5000.0 has been deposited into Isaiah Landin 's Checking
+Successful Transaction! $5000.0 has been deposited into Jose Rodriguez Ortega 's Checking
+Successful Transaction! $5000.0 has been deposited into Joseph Medina - Sandoval 's Checking
+Successful Transaction! $5000.0 has been deposited into Juan Gutierrez 's Checking
+Successful Transaction! $5000.0 has been deposited into Juan Rabelo 's Checking
+Successful Transaction! $5000.0 has been deposited into Judith Garcia 's Checking
+Successful Transaction! $5000.0 has been deposited into Laura Blanco 's Checking
+Successful Transaction! $5000.0 has been deposited into Laurence Labayen 's Checking
+Successful Transaction! $5000.0 has been deposited into Lidice Castro Jimenez 's Checking
+Successful Transaction! $5000.0 has been deposited into Manuel Melendez Lujan 's Checking
+Successful Transaction! $5000.0 has been deposited into Manuel Ruvalcaba 's Checking
+Successful Transaction! $5000.0 has been deposited into Mauricio Ornelas-Gutierrez 's Checking
+Successful Transaction! $5000.0 has been deposited into Minh Dang 's Checking
+Successful Transaction! $5000.0 has been deposited into Oscar Decena 's Checking
+Successful Transaction! $5000.0 has been deposited into Robert Evans 's Checking
+Successful Transaction! $5000.0 has been deposited into Roberto Carrasco 's Checking
+Successful Transaction! $5000.0 has been deposited into Sofia Hernandez 's Checking
+Successful Transaction! $5000.0 has been deposited into Yulianna Torres 's Checking
+Successful transaction! Alberto Miranda paid $1000.0 to Daniel Mejia from Checking account to Checking account.
+Successful transaction! Alex Avila paid $1000.0 to Daniel Mejia from Checking account to Checking account.
+Successful transaction! Alfonso Beltran paid $1000.0 to Daniel Mejia from Checking account to Checking account.
+Successful transaction! Alfredo Rodriguez paid $1000.0 to Daniel Mejia from Checking account to Checking account.
+Successful transaction! Alyssandra Cordero paid $1000.0 to Daniel Mejia from Checking account to Checking account.
+Successful transaction! Anthony Jasso paid $1000.0 to Daniel Mejia from Checking account to Checking account.
+Successful transaction! Arae Zarzosa paid $1000.0 to Daniel Mejia from Checking account to Checking account.
+Successful transaction! Brandon Bustamante paid $1000.0 to Daniel Mejia from Checking account to Checking account.
+Successful transaction! Cesar Cabrera paid $1000.0 to Daniel Mejia from Checking account to Checking account.
+Successful transaction! Christopher Reyes paid $1000.0 to Daniel Mejia from Checking account to Checking account.
+Successful transaction! Dafne Bencomo paid $1000.0 to Daniel Mejia from Checking account to Checking account.
+Successful transaction! David Baptiste paid $1000.0 to Daniel Mejia from Checking account to Checking account.
+Successful transaction! Derek Aguirre paid $1000.0 to Daniel Mejia from Checking account to Checking account.
+Successful transaction! Eduardo Garcia paid $1000.0 to Daniel Mejia from Checking account to Checking account.
+Successful transaction! Ervey Montes paid $1000.0 to Daniel Mejia from Checking account to Checking account.
+Successful transaction! Estevan Ramos paid $1000.0 to Daniel Mejia from Checking account to Checking account.
+Successful transaction! Federico Marin paid $1000.0 to Daniel Mejia from Checking account to Checking account.
+Successful transaction! Gavin Baechle paid $1000.0 to Daniel Mejia from Checking account to Checking account.
+Successful transaction! Gildardo Orea paid $1000.0 to Daniel Mejia from Checking account to Checking account.
+Successful transaction! Grecia Navarrete paid $1000.0 to Daniel Mejia from Checking account to Checking account.
+Successful transaction! Hernan Garcia paid $1000.0 to Daniel Mejia from Checking account to Checking account.
+Successful transaction! Isaiah Landin paid $1000.0 to Daniel Mejia from Checking account to Checking account.
+Successful transaction! Jose Rodriguez Ortega paid $1000.0 to Daniel Mejia from Checking account to Checking account.
+Successful transaction! Joseph Medina - Sandoval paid $1000.0 to Daniel Mejia from Checking account to Checking account.
+Successful transaction! Juan Gutierrez paid $1000.0 to Daniel Mejia from Checking account to Checking account.
+Successful transaction! Juan Rabelo paid $1000.0 to Daniel Mejia from Checking account to Checking account.
+Successful transaction! Judith Garcia paid $1000.0 to Daniel Mejia from Checking account to Checking account.
+Successful transaction! Laura Blanco paid $1000.0 to Daniel Mejia from Checking account to Checking account.
+Successful transaction! Laurence Labayen paid $1000.0 to Daniel Mejia from Checking account to Checking account.
+Successful transaction! Lidice Castro Jimenez paid $1000.0 to Daniel Mejia from Checking account to Checking account.
+Successful transaction! Manuel Melendez Lujan paid $1000.0 to Daniel Mejia from Checking account to Checking account.
+Successful transaction! Manuel Ruvalcaba paid $1000.0 to Daniel Mejia from Checking account to Checking account.
+Successful transaction! Mauricio Ornelas-Gutierrez paid $1000.0 to Daniel Mejia from Checking account to Checking account.
+Successful transaction! Minh Dang paid $1000.0 to Daniel Mejia from Checking account to Checking account.
+Successful transaction! Oscar Decena paid $1000.0 to Daniel Mejia from Checking account to Checking account.
+Successful transaction! Robert Evans paid $1000.0 to Daniel Mejia from Checking account to Checking account.
+Successful transaction! Roberto Carrasco paid $1000.0 to Daniel Mejia from Checking account to Checking account.
+Successful transaction! Sofia Hernandez paid $1000.0 to Daniel Mejia from Checking account to Checking account.
+Successful transaction! Yulianna Torres paid $1000.0 to Daniel Mejia from Checking account to Checking account.
+Successful transaction! Daniel Mejia has inquired aboutChecking 's balance: 40887.119999999995
+Successful Transaction! $100.0 has been deposited into Mickey Mouse 's Savings
+Successful transaction! Donald Duck paid $48.46 to Alberto Miranda from Checking account to Checking account.
+Successful Transaction! $79.0 has been deposited into Minnie Mouse 's Savings
+Successful transaction! Goofy Disney paid $15.63 to Alfonso Beltran from Checking account to Checking account.
+Successful Transaction! $77.0 has been deposited into Pluto Disney 's Savings
+Successful Transaction! $54.0 has been deposited into Dale Disney 's Savings
+Successful transaction! Cinderella Disney paid $28.81 to Arae Zarzosa from Checking account to Checking account.
+Successful Transaction! $57.0 has been deposited into Ariel Disney 's Savings
+Successful transaction! Jasmine Disney paid $28.89 to Cesar Cabrera from Checking account to Checking account.
+Successful Transaction! $94.0 has been deposited into Aladdin Disney 's Savings
+Successful transaction! Simba Disney paid $39.29 to Dafne Bencomo from Checking account to Checking account.
+Successful Transaction! $67.0 has been deposited into Mufassa Disney 's Savings
+Successful transaction! Aurora Disney paid $34.47 to Derek Aguirre from Checking account to Checking account.
+Successful Transaction! $100.0 has been deposited into Peter Pan 's Savings
+Successful transaction! Woody Disney paid $34.04 to Ervey Montes from Checking account to Checking account.
+Failed transaction: amount is less than 0 or more than the payer's account balance (33.53) 
+Successful transaction! Jafar Aladdin paid $12.36 to Federico Marin from Checking account to Checking account.
+Successful Transaction! $56.0 has been deposited into Ursela Mermaid 's Savings
+Successful transaction! Beast Disney paid $26.84 to Gildardo Orea from Checking account to Checking account.
+Successful Transaction! $88.0 has been deposited into Belle Disney 's Savings
+Successful transaction! Cruella De Vil paid $34.7 to Hernan Garcia from Checking account to Checking account.
+Successful Transaction! $65.0 has been deposited into Scar Lion 's Savings
+Successful transaction! Simba King paid $11.31 to Jose Rodriguez Ortega from Checking account to Checking account.
+Successful Transaction! $78.0 has been deposited into Gaston Disney 's Savings
+Successful transaction! Shere Khan paid $41.2 to Juan Gutierrez from Checking account to Checking account.
+Successful Transaction! $86.0 has been deposited into Captaiin Hook 's Savings
+Successful transaction! Kaa Disney paid $11.83 to Judith Garcia from Checking account to Checking account.
+Successful Transaction! $86.0 has been deposited into Evil Queen 's Savings
+Successful transaction! Pinocchio Disney paid $34.11 to Laurence Labayen from Checking account to Checking account.
+Successful Transaction! $57.0 has been deposited into Prince Eric 's Savings
+Successful transaction! Quasimodo Disney paid $25.58 to Manuel Melendez Lujan from Checking account to Checking account.
+Successful Transaction! $85.0 has been deposited into Hercules Disney 's Savings
+Successful transaction! Mulan Disney paid $36.48 to Mauricio Ornelas-Gutierrez from Checking account to Checking account.
+Successful Transaction! $59.0 has been deposited into Lilo Disney 's Savings
+Successful transaction! Stitch Disney paid $29.25 to Oscar Decena from Checking account to Checking account.
+Successful Transaction! $74.0 has been deposited into Gaston Disney 's Savings
+Successful transaction! Mickey Mouse paid $17.97 to Roberto Carrasco from Checking account to Checking account.
+Successful Transaction! $91.0 has been deposited into Donald Duck 's Savings
+Successful transaction! Minnie Mouse paid $29.5 to Yulianna Torres from Checking account to Checking account.
+Successful Transaction! $81.0 has been deposited into Goofy Disney 's Savings
+Successful transaction! Pluto Disney paid $39.92 to Alex Avila from Checking account to Checking account.
+Successful Transaction! $75.0 has been deposited into Chip Disney 's Savings
+Successful transaction! Dale Disney paid $50.39 to Alfredo Rodriguez from Checking account to Checking account.
+Successful Transaction! $79.0 has been deposited into Cinderella Disney 's Savings
+Successful transaction! Ariel Disney paid $46.88 to Anthony Jasso from Checking account to Checking account.
+Successful Transaction! $59.0 has been deposited into Jasmine Disney 's Savings
+Successful transaction! Aladdin Disney paid $25.16 to Brandon Bustamante from Checking account to Checking account.
+Successful Transaction! $100.0 has been deposited into Simba Disney 's Savings
+Successful transaction! Mufassa Disney paid $33.54 to Christopher Reyes from Checking account to Checking account.
+Successful transaction! Mickey Mouse paid $48.46 to David Baptiste from Savings account to Checking account.
+Successful Transaction! $79.0 has been deposited into Donald Duck 's Checking
+Successful transaction! Minnie Mouse paid $15.63 to Eduardo Garcia from Savings account to Checking account.
+Successful Transaction! $77.0 has been deposited into Goofy Disney 's Checking
+Successful transaction! Pluto Disney paid $50.99 to Estevan Ramos from Savings account to Checking account.
+Failed transaction: amount is less than 0 or more than the payer's account balance (32.84) 
+Successful transaction! Dale Disney paid $28.81 to Gavin Baechle from Savings account to Checking account.
+Successful Transaction! $57.0 has been deposited into Cinderella Disney 's Checking
+Successful transaction! Ariel Disney paid $28.89 to Grecia Navarrete from Savings account to Checking account.
+Successful Transaction! $94.0 has been deposited into Jasmine Disney 's Checking
+Successful transaction! Aladdin Disney paid $39.29 to Isaiah Landin from Savings account to Checking account.
+Successful Transaction! $67.0 has been deposited into Simba Disney 's Checking
+Successful transaction! Mufassa Disney paid $34.47 to Joseph Medina - Sandoval from Savings account to Checking account.
+Successful Transaction! $100.0 has been deposited into Aurora Disney 's Checking
+Successful transaction! Peter Pan paid $34.04 to Juan Rabelo from Savings account to Checking account.
+Successful Transaction! $90.0 has been deposited into Woody Disney 's Checking
+Successful transaction! Buzz Lightyear paid $12.36 to Laura Blanco from Savings account to Checking account.
+Successful Transaction! $56.0 has been deposited into Jafar Aladdin 's Checking
+Successful transaction! Ursela Mermaid paid $26.84 to Lidice Castro Jimenez from Savings account to Checking account.
+Successful Transaction! $88.0 has been deposited into Beast Disney 's Checking
+Successful transaction! Belle Disney paid $34.7 to Manuel Ruvalcaba from Savings account to Checking account.
+Successful Transaction! $65.0 has been deposited into Cruella De Vil 's Checking
+Successful transaction! Scar Lion paid $11.31 to Minh Dang from Savings account to Checking account.
+Successful Transaction! $78.0 has been deposited into Simba King 's Checking
+Successful transaction! Gaston Disney paid $41.2 to Robert Evans from Savings account to Checking account.
+Successful Transaction! $86.0 has been deposited into Shere Khan 's Checking
+Successful transaction! Captaiin Hook paid $11.83 to Sofia Hernandez from Savings account to Checking account.
+Successful Transaction! $86.0 has been deposited into Kaa Disney 's Checking

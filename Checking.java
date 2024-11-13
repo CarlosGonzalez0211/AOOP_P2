@@ -2,11 +2,11 @@
  * The Checking class represents a checking account and inherits the Account class.
  * It provides the specific implementation of withdrawal functionalities and receives 
  * the specific attributes of a checking account.
- * 
+ *
  * @author Daniela Castro Enriquez
  * @author Carlos Gonzalez
  * @author Aylin Rodriguez
- * 
+ *
  */
 public class Checking extends Account implements Withdrawable {
 

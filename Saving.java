@@ -2,11 +2,11 @@
  * The Saving class represents a savings account that extends the Account class.
  * It is designed to hold a balance and provide functionalities specific to savings accounts.
  * It implements the Withdrawable interface to provide withdrawal functionality
- * 
+ *
  * @author Daniela Castro Enriquez
  * @author Carlos Gonzalez
  * @author Aylin Rodriguez
- * 
+ *
  */
 public class Saving extends Account implements Withdrawable {
 
@@ -21,7 +21,7 @@ public class Saving extends Account implements Withdrawable {
     public Saving(int accountNumber, double startingBalance, Person accountHolder) {
         super(accountNumber, startingBalance, accountHolder, "Savings");
     }
-    
+
     /**
      * Attempts to withdraw the specified amount from the savings account.
      * Checks if the withdrawal is allowed based on the current balance.
@@ -45,7 +45,7 @@ public class Saving extends Account implements Withdrawable {
      * @param amount the amount to be checked for withdrawal
      * @return true if the current balance is sufficient; false otherwise
      */
-    @Override 
+    @Override
     public boolean allowedToWithdraw(double amount) {
         return getBalance() >= amount;
     }

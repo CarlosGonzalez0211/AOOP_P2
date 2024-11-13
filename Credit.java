@@ -2,11 +2,11 @@
  * The Credit class represents a credit account, which inherits from the Account class.
  * It includes functionalities specific to credit accounts, such as managing the
  * maximum credit limit,  tracking the account balance, and status of withdrawals.
- * 
+ *
  * @author Daniela Castro Enriquez
  * @author Carlos Gonzalez
  * @author Aylin Rodriguez
- * 
+ *
  */
 public class Credit extends Account implements Withdrawable {
 
@@ -81,7 +81,7 @@ public class Credit extends Account implements Withdrawable {
     /**
      * This method returns a string were the account information is shown, this method is inherited from the Account class.
      * This method also includes displaying the maximum credit.
-     * 
+     *
      * @return a string representing the Credit account information
      */
     @Override

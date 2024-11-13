@@ -5,11 +5,11 @@ import java.util.Set;
  * This class shows the different attributes and functionalities that an account has.
  * Thie class is inherited by Checking, Credit, and Saving, since they are all 
  * different types of accounts that each user has.
- * 
+ *
  * @author Daniela Castro Enriquez
  * @author Carlos Gonzalez
  * @author Aylin Rodriguez
- * 
+ *
  */
 public abstract class Account {
 
@@ -28,39 +28,46 @@ public abstract class Account {
     /** The type of the account, either a Checking, Savings, or Credit account. */
     private String accountType;
 
-   /** 
-     * A set containing unique account numbers.
+    /**
+     * A set that stores unique account numbers for all accounts.
+     * This helps to ensure that each account number is distinct across all accounts.
      */
     private static Set<Integer> accountNumbers = new HashSet<>();
 
     /**
-     * Adds savings, checking, and credit account numbers to the set of unique account numbers.
+     * Adds the provided account numbers to the set of unique account numbers.
+     * This method is used to store the account numbers for savings, checking, and credit accounts,
+     * ensuring that each account number is unique.
      *
-     * @param savingsNum the savings account number to be added
-     * @param checkingNum the checking account number to be added
-     * @param creditNum the credit account number to be added
+     * @param savingsNum the account number for the savings account
+     * @param checkingNum the account number for the checking account
+     * @param creditNum the account number for the credit account
      */
-    public static void addToAccountNumbers(int savingsNum, int checkingNum, int creditNum) {
+    public static void addToAccountNumbers(int savingsNum, int checkingNum, int creditNum){
         accountNumbers.add(savingsNum);
         accountNumbers.add(checkingNum);
         accountNumbers.add(creditNum);
     }
 
     /**
-     * Adds an individual account identifier (ID number) to the set of unique account numbers.
+     * Adds a unique account ID number to the set of account numbers.
+     * This method ensures that the provided ID number is added to the set,
+     * preventing duplicate account IDs across all accounts.
      *
-     * @param idNumber the ID number to be added to the set
+     * @param idNumber the account ID number to be added to the set of unique account numbers
      */
-    public static void addIdToAccountSet(int idNumber) {
+    public static void addIdToAccountSet(int idNumber){
         accountNumbers.add(idNumber);
     }
 
     /**
      * Retrieves the set of unique account numbers.
+     * This set contains all account numbers for savings, checking, and credit accounts, 
+     * ensuring each account number is unique across accounts.
      *
-     * @return a set of unique account numbers
+     * @return a set of integers representing unique account numbers
      */
-    public static Set<Integer> getSetAccountsNumbers() {
+    public static Set<Integer> getSetAccountsNumbers(){
         return accountNumbers;
     }
     /**
@@ -73,7 +80,7 @@ public abstract class Account {
      * @param accountHolder   the owner of type Person of the account.
      * @param accountType     the type of the account, either a Checking, Savings, or Credit account.
      */
-    
+
     public Account(int accountNumber, double startingBalance, Person accountHolder, String accountType) {
         this.accountNumber = accountNumber;
         this.startingBalance = startingBalance;
@@ -85,7 +92,7 @@ public abstract class Account {
     /**
      * This method makes a withdrawal of a specified amount from an account.
      * It acts differently depending on the account (abstract method).
-     *      
+     *
      * @param amount the amount to withdraw
      * @return true if the withdrawal was successful, false if it was not processed correctly
      */
@@ -191,7 +198,7 @@ public abstract class Account {
         return this.accountType;
     }
 
-    
+
     /**
      * This method implements a string representation of the account, which shows the account number, type, and the account balance.
      *
@@ -200,7 +207,7 @@ public abstract class Account {
     @Override
     public String toString() {
         return "Account number: " + getAccountNum() + "\n" +
-               "Account type: " + getAccountType() + "\n" +
-               "Account current balance: " + getBalance();
+                "Account type: " + getAccountType() + "\n" +
+                "Account current balance: " + getBalance();
     }
 }

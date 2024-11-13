@@ -10,11 +10,11 @@ import java.util.Map;
 /**
  * The Log class provides the functionality to log messages to both the console and a log file when doing a customer performs bank transactions.
  * The log entries are written to a specified file, with each entry appended as a new line.
- * 
+ *
  * @author Daniela Castro Enriquez
  * @author Carlos Gonzalez
  * @author Aylin Rodriguez
- * 
+ *
  */
 public class Log {
 
@@ -87,10 +87,9 @@ public class Log {
             return;
         }
 
-        // Print the log message to the console
+
         System.out.println(logMessage);
 
-        // Write the log message to the log file
         try (BufferedWriter textWriter = new BufferedWriter(new FileWriter(LOG_FILE, true))) {
             textWriter.write(logMessage);
             textWriter.newLine();  // Move to the next line
@@ -141,7 +140,7 @@ public class Log {
             System.out.println("Error writing user transaction file for " + userName + ": " + e.getMessage());
         }
 
-        
+
     }
 
     /**
@@ -186,5 +185,5 @@ public class Log {
         }
     }
 
-   
+
 }
