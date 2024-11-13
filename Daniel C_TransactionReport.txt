@@ -1,0 +1,11 @@
+Date: 2024-11-12
+
+Final Account Balances:
+Account Checking (1080): $880.74
+Account Savings (2080): $381.74
+Account Credit (3080): $-505.40
+
+Transactions:
+Daniel C made a balance inquiry on their accounts.
+Daniel C made a deposit on Checking-1080. Daniel C's new balance for Checking-1080 is 919.74
+Daniel C transferred $39.0 from Checking to Savings

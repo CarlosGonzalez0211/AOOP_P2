@@ -107,3 +107,26 @@ Alex Avila made a balance inquiry on their accounts.
 Withdrawal of $20.0 from Checking account. New balance: $95.09
 Alex Avila transferred $15.0 from Checking to Savings
 Alex Avila paid $17.0 to Daniel B from Checking account to Savings account.
+Brandon Bustamante made a balance inquiry on their accounts.
+Brandon Bustamante made a balance inquiry on their accounts.
+Brandon Bustamante made a deposit on Checking-1043. Brandon Bustamante's new balance for Checking-1043 is 375.39
+Brandon Bustamante made a balance inquiry on their accounts.
+Brandon Bustamante paid $32.0 to Daniel B from Checking account to Savings account.
+Daniel B made a balance inquiry on their accounts.
+Daniel B made a balance inquiry on their accounts.
+Daniel B made a deposit on Checking-1079. Daniel B's new balance for Checking-1079 is 382.4
+Daniel B made a deposit on Checking-1079. Daniel B's new balance for Checking-1079 is 382.4
+Withdrawal of $10.0 from Checking account. New balance: $372.4
+Withdrawal of $10.0 from Checking account. New balance: $372.4
+Daniel B paid $23.0 to Brandon Bustamante from Checking account to Savings account.
+Daniel B paid $23.0 to Brandon Bustamante from Checking account to Savings account.
+Daniel A made a balance inquiry on their accounts.
+Daniel A made a balance inquiry on their accounts.
+Daniel A made a balance inquiry on their accounts.
+Daniel A made a balance inquiry on their accounts.
+Daniel C made a balance inquiry on their accounts.
+Daniel C made a balance inquiry on their accounts.
+Daniel C made a deposit on Checking-1080. Daniel C's new balance for Checking-1080 is 919.74
+Daniel C made a deposit on Checking-1080. Daniel C's new balance for Checking-1080 is 919.74
+Daniel C transferred $39.0 from Checking to Savings
+Daniel C transferred $39.0 from Checking to Savings

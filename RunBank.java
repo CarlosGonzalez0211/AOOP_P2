@@ -1,7 +1,10 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Random;
 import java.util.Scanner;
@@ -161,6 +164,10 @@ public class RunBank {
                 if (userChoice == 6) {
                     //
                     PopulationHashmap.writeToCSV("id_map.csv", customersMap[1]);
+                    List<Account> userAccounts = Arrays.asList(customer.getAccounts());
+                    List<String> listOfTransactions = Log.getTransactions();
+                    String name = customer.getFirstName() + " " + customer.getLastName();
+                    Log.createUserTransactionFile(name, userAccounts, listOfTransactions);
                     //PopulationHashmap.writebllabal
                     System.out.println("Thank you for visiting us!");
 
@@ -617,18 +624,43 @@ public class RunBank {
             try {
                 System.out.print("Please enter the user's name to generate a bank statement: ");
                 String name = scanner.nextLine().trim();
-    
+
                 Customer customer = customersMap[1].get(name);
-    
+
                 if (customer == null) {
                     System.out.println("Customer not found. Please enter a valid customer.");
-                }else{
-                    
+                } else {
+
+                    try (PrintWriter writer = new PrintWriter(new File("BankStatement_" + customer.getFirstName() + customer.getLastName() + ".txt"))) {
+                        writer.println("--- Bank Statement ---");
+                        writer.println("Customer Name: " + customer.getFirstName() + " " + customer.getLastName());
+                        writer.println("Address: " + customer.getAddress());
+                        writer.println("Phone Number: " + customer.getPhoneNumber());
+                        writer.println("Date of Birth: " + customer.getDateOfBirth());
+
+                        writer.println("\n--- Transaction History ---");
+                        
+                        File file = new File(customer.getFirstName() + " " + customer.getLastName() + "_TransactionReport.txt");
+                        Scanner fileScanner = new Scanner(file);
+                        fileScanner.nextLine();
+                        while(fileScanner.hasNextLine()){
+                            String line = fileScanner.nextLine();
+                            writer.println(line);
+                        }
+                        
+
+                        System.out.println("Bank statement generated successfully for " + customer.getFirstName() + " " + customer.getLastName());
+                    } catch (FileNotFoundException e) {
+                        System.out.println("Error generating bank statement file: " + e.getMessage());
+                    }
+
+                    break;
                 }
 
             } catch (NoSuchElementException e) {
                 System.out.println("Input error. Please try again.");
             }
+
         }
         
     }

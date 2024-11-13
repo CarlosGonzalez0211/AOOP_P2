@@ -1,6 +1,11 @@
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * The Log class provides the functionality to log messages to both the console and a log file when doing a customer performs bank transactions.
@@ -17,6 +22,32 @@ public class Log {
      * The path to the log file where messages are recorded.
      */
     public static final String LOG_FILE = "log.txt";
+    public static List<String> transactions = new ArrayList<>();
+    public static List<Account> accounts = new ArrayList<>();
+    public static Map<String, List<String>> userTransactions = new HashMap<>(); // Store user-specific transactions
+
+    public static List<String> getTransactions(){
+        return transactions;
+    }
+
+    public static void logUserTransaction(String userName, String logMessage) {
+        if (logMessage == null || logMessage.isEmpty()) {
+            System.out.println("Empty log message for user " + userName + ". Nothing to log.");
+            return;
+        }
+
+        // Initialize the transaction list for the user if not already done
+        userTransactions.putIfAbsent(userName, new ArrayList<>());
+
+        // Add the log message to the user's transaction list
+        userTransactions.get(userName).add(logMessage);
+
+        // Print the log message to the console (optional)
+        System.out.println("Transaction logged for " + userName + ": " + logMessage);
+
+        // Optionally, write to the general log file
+        logEntries(logMessage);
+    }
 
     /**
      * Logs a specified message to the console and appends it to the log file.
@@ -43,25 +74,71 @@ public class Log {
         }
     }
 
-    public static void logUserTransaction(String userName, String logMessage) {
-        if (logMessage == null || logMessage.isEmpty()) {
-            System.out.println("Empty log message for user " + userName + ". Nothing to log.");
-            return;
-        }
+    public static void createUserTransactionFile(String userName, List<Account> userAccounts, List<String> transactions) {
+        // File name for the user-specific transaction log
+        List<String> transactionsList = userTransactions.getOrDefault(userName, new ArrayList<>());
 
-        // User-specific log file name
-        String userLogFile = userName + "_transactions.txt";
+        String fileName = userName + "_TransactionReport.txt";
 
-        // Append the message to the user-specific log file
-        appendToFile(userLogFile, logMessage);
-    }
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+            // Write the date of the statement
+            writer.write("Date: " + LocalDate.now());
+            writer.newLine();
+            writer.newLine();
 
-    private static void appendToFile(String fileName, String logMessage) {
-        try (BufferedWriter textWriter = new BufferedWriter(new FileWriter(fileName, true))) {
-            textWriter.write(logMessage);
-            textWriter.newLine();  // Move to the next line
+            // Write account information and ending balances
+            writer.write("Final Account Balances:");
+            writer.newLine();
+            for (Account account : userAccounts) {
+                writer.write("Account " + account.getAccountType() + " (" + account.getAccountNum() + "): $" + String.format("%.2f", account.getBalance()));
+                writer.newLine();
+            }
+            writer.newLine();
+
+            // Write all transactions
+            writer.write("Transactions:");
+            writer.newLine();
+            for (String transaction : transactionsList) {
+                writer.write(transaction);
+                writer.newLine();
+            }
+
+            System.out.println("User transaction file created successfully for " + userName);
         } catch (IOException e) {
-            System.out.println("Failed to write to file: " + fileName + " Error: " + e.getMessage());
+            System.out.println("Error writing user transaction file for " + userName + ": " + e.getMessage());
+        }
+
+        
+    }
+
+    public static List<String> getUserTransactions(String userName) {
+        return userTransactions.getOrDefault(userName, new ArrayList<>());
+    }
+
+    public static void createUserTransactionsFile(String userName, List<String> transactions) {
+        // File name for the user-specific transactions file
+        String fileName = userName + "_Transactions.txt";
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, false))) { // Overwrite mode
+            writer.write("--- Transactions for " + userName + " ---");
+            writer.newLine();
+            writer.newLine();
+
+            // Write all transactions
+            if (transactions.isEmpty()) {
+                writer.write("No transactions found.");
+            } else {
+                for (String transaction : transactions) {
+                    writer.write(transaction);
+                    writer.newLine();
+                }
+            }
+
+            System.out.println("Transactions file created successfully for " + userName);
+        } catch (IOException e) {
+            System.out.println("Error writing transactions file for " + userName + ": " + e.getMessage());
         }
     }
+
+   
 }

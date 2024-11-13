@@ -108,6 +108,7 @@ public class Customer extends Person {
         String name = customer.getFirstName() + " " + customer.getLastName();
         String message = name + " made a balance inquiry on their accounts."; 
         Log.logEntries(message);
+        Log.transactions.add(message);
         Log.logUserTransaction(name, message);
     }
     /**
@@ -149,8 +150,9 @@ public class Customer extends Person {
 
         String name = customer.getFirstName() + " " + customer.getLastName();
         String accountTitle = account.getAccountType() + "-" + account.getAccountNum();
-        Log.logEntries(name + " made a deposit on " + accountTitle + ". " + name + "'s new balance for " + accountTitle + " is " + account.getBalance());
-
+        String message = name + " made a deposit on " + accountTitle + ". " + name + "'s new balance for " + accountTitle + " is " + account.getBalance();
+        Log.logEntries(message);
+        Log.logUserTransaction(name, message);
     }
 
     public static void makeWithdrawal(Customer customer, Scanner scanner) {
@@ -178,6 +180,7 @@ public class Customer extends Person {
         
         String message = "Withdrawal of $" + amount + " from " + account.getAccountType() + " account. New balance: $" + account.getBalance();
         Log.logEntries(message);
+        Log.transactions.add(message);
         Log.logUserTransaction(customer.getFirstName() + " " + customer.getLastName(), message);
     }
 
@@ -239,6 +242,7 @@ public class Customer extends Person {
         String name = customer.getFirstName() + " " + customer.getLastName();
         String message = name + " transferred $" + amount + " from " + accountFrom.getAccountType() + " to " + accountTo.getAccountType();
         Log.logEntries(message);
+        Log.transactions.add(message);
         Log.logUserTransaction(name, message);
         
         // Display updated balances
@@ -305,6 +309,7 @@ public class Customer extends Person {
         
         String message = name + " paid $" + amount + " to " + recipientName + " from " + accountFrom.getAccountType() + " account to " + accountTo.getAccountType() + " account.";
         Log.logEntries(message);
+        Log.transactions.add(message);
         Log.logUserTransaction(name, message);
 
     }
@@ -382,7 +387,7 @@ public class Customer extends Person {
             
             String message = "Successful transaction! " + fromUser + " paid $" + amount + " to " + toUser + " from " + payerAccount.getAccountType() + " account to " + payeeAccount.getAccountType() + " account.";
             Log.logEntries(message);
-            Log.logUserTransaction(fromUser, message);
+            Log.transactions.add(message);
         }
 
         }
@@ -436,7 +441,7 @@ public class Customer extends Person {
             
             String message = "Successful Transaction! " + fromUser + " transferred: $" + amount + " from " + payerAccount.getAccountType() + " account to " + payeeAccount.getAccountType() + " account";
             Log.logEntries(message);
-            Log.logUserTransaction(fromUser, message);
+            Log.transactions.add(message);
 
             
         }
@@ -453,7 +458,7 @@ public class Customer extends Person {
 
         String message = "Successful Transaction! $" + amount + " has been deposited into " + toUser + " 's " + toAccount;
         Log.logEntries(message);
-        Log.logUserTransaction(toUser, message);
+        Log.transactions.add(message);
 
     }
 
@@ -474,7 +479,7 @@ public class Customer extends Person {
         
         String message = "Successful Transaction! $" + amount + " has been deposited into " + fromUser + " 's " + fromAccount;
         Log.logEntries(message);
-        Log.logUserTransaction(fromUser, message);
+        Log.transactions.add(message);
 
     }
 
@@ -488,6 +493,6 @@ public class Customer extends Person {
 
         String message = "Successful transaction! " + fromUser + " has inquired about" + fromAccount +" 's balance: " + userAccount.getBalance();
         Log.logEntries(message);
-        Log.logUserTransaction(fromUser, message);
+        Log.transactions.add(message);
     }
 }
