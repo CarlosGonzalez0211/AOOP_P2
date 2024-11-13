@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
@@ -617,19 +618,36 @@ public class RunBank {
             try {
                 System.out.print("Please enter the user's name to generate a bank statement: ");
                 String name = scanner.nextLine().trim();
-    
+
                 Customer customer = customersMap[1].get(name);
-    
+
                 if (customer == null) {
                     System.out.println("Customer not found. Please enter a valid customer.");
-                }else{
-                    
+                } else {
+
+                    try (PrintWriter writer = new PrintWriter(new File("BankStatement_" + customer.getIdNumber() + ".txt"))) {
+                        writer.println("--- Bank Statement ---");
+                        writer.println("Customer Name: " + customer.getFirstName() + " " + customer.getLastName());
+                        writer.println("Address: " + customer.getAddress());
+                        writer.println("Phone Number: " + customer.getPhoneNumber());
+                        writer.println("Date of Birth: " + customer.getDateOfBirth());
+
+                        writer.println("\n--- Transaction History ---");
+                        writer.printf("%-20s %-10s %-10s %10s%n", "Date", "Type", "Amount", "Balance");
+
+                        // Assuming customer has a getTransactions method that returns a list of Transaction objects
+
+                        System.out.println("Bank statement generated successfully for " + customer.getFirstName() + " " + customer.getLastName());
+                    } catch (FileNotFoundException e) {
+                        System.out.println("Error generating bank statement file: " + e.getMessage());
+                    }
+
+                    break;
                 }
 
             } catch (NoSuchElementException e) {
                 System.out.println("Input error. Please try again.");
             }
         }
-        
     }
 }

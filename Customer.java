@@ -160,41 +160,41 @@ public class Customer extends Person {
         RunBank.menuTypesAccount();
         Account accountFrom = null;
         System.out.print("Enter your choice (1 to 3): ");
-        
+
         // Input validation loop for accountFrom
         while (accountFrom == null) {
             String choice = scanner.next().trim();
             accountFrom = RunBank.getAccountByChoice(customer, choice);
-        
+
             if (accountFrom == null) {
                 System.out.println("Invalid choice. Enter 1, 2, or 3:");
             }
         }
-        
+
         // Choose account to transfer to:
         System.out.println("Choose account to transfer to:");
         RunBank.menuTypesAccount();
         Account accountTo = null;
         System.out.print("Enter your choice (1 to 3): ");
-        
+
         // Input validation loop for accountTo
         while (accountTo == null) {
             String choice = scanner.next().trim();
             accountTo = RunBank.getAccountByChoice(customer, choice);
-        
+
             if (accountTo == null) {
                 System.out.println("Invalid choice. Enter 1, 2, or 3:");
             }
         }
-        
+
         // Withdraw amount from accountFrom
         double amount = withdrawMoney(accountFrom, scanner);
-        
+
         // Additional validation for credit account withdrawals and ensuring transfer doesn't exceed balance
         if (accountFrom == customer.getCreditAccount()) {
             double currentBalance = accountFrom.getBalance();  // current debt on the credit account
             double creditMax = Math.abs(customer.getCreditAccount().getCreditMax());  // credit limit (positive value)
-            
+
             // Ensure the transfer amount does not exceed available credit
             if (Math.abs(currentBalance) + amount > creditMax) {
                 System.out.println("Transfer would exceed the credit limit of $" + creditMax);
@@ -202,18 +202,19 @@ public class Customer extends Person {
                 return; // Exit the method if the transfer is not allowed
             }
         }
-        
+
         // Perform the transfer
         accountFrom.setBalance(accountFrom.getBalance() - amount);
         accountTo.setBalance(accountTo.getBalance() + amount);
-        
+
         // Log and confirm
         System.out.println("Transfer successful!");
         String name = customer.getFirstName() + " " + customer.getLastName();
         Log.logEntries(name + " transferred $" + amount + " from " + accountFrom.getAccountType() + " to " + accountTo.getAccountType());
-        
+
         // Display updated balances
         System.out.println("New balance for " + accountFrom.getAccountType() + " account: $" + accountFrom.getBalance());
+        System.out.println("New balance for " + accountTo.getAccountType() + " account: $" + accountTo.getBalance());  // Ensure this line is added
     }
     
     

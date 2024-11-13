@@ -80,3 +80,73 @@ Daniela Castro made a deposit on Checking-1234. Daniela Castro's new balance for
 Daniela Castro made a balance inquiry on their accounts.
 Daniela Castro transferred: $1000.0 from Checking account to Savings account
 Withdrawal successful of $500.0 from Checking account. New Checking account balance: $500.0
+Daniela Castro made a deposit on Checking-1234. Daniela Castro's new balance for Checking-1234 is 1500.0
+Daniela Castro made a balance inquiry on their accounts.
+Daniela Castro transferred: $1000.0 from Checking account to Savings account
+Withdrawal successful of $500.0 from Checking account. New Checking account balance: $500.0
+Withdrawal successful of $857.56 from Checking account. New Checking account balance: $0.0
+Daniel A paid $20.0 to Daniel A from Savings account to Savings account.
+Withdrawal of $20.0 from Credit account. New balance: $-806.93
+Withdrawal of $20.0 from Credit account. New balance: $-806.93
+Daniel A transferred $20.0 from Credit to Savings
+Daniel A made a deposit on Checking-1078. Daniel A's new balance for Checking-1078 is 877.56
+Daniel A transferred $20.0 from Credit to Credit
+Withdrawal of $20.0 from Credit account. New balance: $-806.93
+Daniel A transferred $20.0 from Credit to Savings
+Daniel A paid $20.0 to Derek Aguirre from Credit account to Savings account.
+Daniel A transferred $786.95 from Credit to Savings
+Daniel A transferred $786.95 from Credit to Savings
+Withdrawal of $20.0 from Checking account. New balance: $837.56
+Withdrawal of $20.0 from Checking account. New balance: $65.09
+Alex Avila made a balance inquiry on their accounts.
+Daniela Castro made a balance inquiry on their accounts.
+Daniela Castro transferred $1000.0 from Checking to Savings
+Withdrawal of $500.0 from Checking account. New balance: $500.0
+Daniela Castro made a balance inquiry on their accounts.
+Daniela Castro transferred $1000.0 from Checking to Savings
+Withdrawal of $500.0 from Checking account. New balance: $500.0
+Daniela Castro made a balance inquiry on their accounts.
+Withdrawal of $200.0 from Checking account. New balance: $800.0
+Daniela Castro made a balance inquiry on their accounts.
+Withdrawal of $200.0 from Checking account. New balance: $800.0
+Withdrawal of $1000.0 from Credit account. New balance: $2000.0
+Daniela Castro made a balance inquiry on their accounts.
+Withdrawal of $200.0 from Checking account. New balance: $800.0
+Daniela Castro transferred $500.0 from Checking to Savings
+Daniela Castro made a balance inquiry on their accounts.
+Withdrawal of $200.0 from Checking account. New balance: $800.0
+Daniela Castro transferred $500.0 from Checking to Savings
+Daniela Castro made a balance inquiry on their accounts.
+Withdrawal of $200.0 from Checking account. New balance: $800.0
+Daniela Castro transferred $500.0 from Checking to Savings
+Daniela Castro made a balance inquiry on their accounts.
+Withdrawal of $200.0 from Checking account. New balance: $800.0
+Daniela Castro transferred $500.0 from Checking to Savings
+Daniela Castro made a balance inquiry on their accounts.
+Withdrawal of $200.0 from Checking account. New balance: $800.0
+Daniela Castro transferred $500.0 from Checking to Savings
+Daniela Castro made a balance inquiry on their accounts.
+Withdrawal of $200.0 from Checking account. New balance: $800.0
+Daniela Castro transferred $500.0 from Checking to Savings
+Daniela Castro made a balance inquiry on their accounts.
+Withdrawal of $200.0 from Checking account. New balance: $800.0
+Daniela Castro transferred $500.0 from Checking to Savings
+Daniela Castro made a balance inquiry on their accounts.
+Withdrawal of $200.0 from Checking account. New balance: $800.0
+Daniela Castro transferred $500.0 from Checking to Savings
+Daniela Castro made a balance inquiry on their accounts.
+Withdrawal of $200.0 from Checking account. New balance: $800.0
+Daniela Castro transferred $500.0 from Checking to Savings
+Withdrawal of $1000.0 from Credit account. New balance: $2000.0
+Daniela Castro made a balance inquiry on their accounts.
+Withdrawal of $200.0 from Checking account. New balance: $800.0
+Daniela Castro transferred $500.0 from Checking to Savings
+Daniela Castro made a balance inquiry on their accounts.
+Withdrawal of $200.0 from Checking account. New balance: $800.0
+Daniela Castro transferred $500.0 from Checking to Savings
+Daniela Castro made a balance inquiry on their accounts.
+Withdrawal of $200.0 from Checking account. New balance: $800.0
+Daniela Castro transferred $500.0 from Checking to Savings
+Daniela Castro made a balance inquiry on their accounts.
+Withdrawal of $200.0 from Checking account. New balance: $800.0
+Daniela Castro transferred $500.0 from Checking to Savings
