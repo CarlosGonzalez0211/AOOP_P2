@@ -571,6 +571,19 @@ public class RunBank {
 
     }
 
+    /**
+     * Appends a customer's details and associated accounts to the "BankUsers.csv" file.
+     *
+     * This method formats the provided customer and their associated accounts into a CSV row
+     * and writes the data to a file named "BankUsers.csv". If the file does not exist, it will be created.
+     * Each customer's information, including their ID, name, date of birth, address, phone number,
+     * and account details (account number, type, and balance), will be written to a new line in the CSV file.
+     * The accounts are appended after the basic customer information, with each account's details separated
+     * by commas.
+     *
+     * @param customer The customer whose information and accounts will be written to the CSV file.
+     * @throws IOException If an error occurs while writing to the CSV file.
+     */
     public static void appendCustomerToCSV(Customer customer) {
         try (FileWriter fw = new FileWriter("BankUsers.csv", true);
              PrintWriter writer = new PrintWriter(fw)) {
