@@ -1,2 +1,6 @@
 Alex Avila made a balance inquiry on their accounts.
 Alex Avila transferred $30.0 from Checking to Savings
+Alex Avila made a balance inquiry on their accounts.
+Withdrawal of $20.0 from Checking account. New balance: $95.09
+Alex Avila transferred $15.0 from Checking to Savings
+Alex Avila paid $17.0 to Daniel B from Checking account to Savings account.

@@ -122,12 +122,35 @@ public class Customer extends Person {
         Account account = null;
         System.out.print("Enter your choice (1 to 3): ");
         while (account == null) {
-            String choice = scanner.next().trim(); // Read and trim input
-            account = RunBank.getAccountByChoice(customer, choice); 
+            String choice = scanner.next().trim();
+            account = RunBank.getAccountByChoice(customer, choice);
             if (account == null) {
                 System.out.println("Input valid choice. 1 to 3:");
             }
         }
+
+        System.out.print("Input amount to deposit: ");
+        double amount = scanner.nextDouble();
+        amount = validateAmount(amount, scanner, account);
+
+        if (account == customer.getCreditAccount()) {
+            double creditMax = Math.abs(customer.getCreditAccount().getCreditMax());
+            double currentBalance = account.getBalance();
+            while (currentBalance + amount > creditMax) {
+                System.out.println("You cannot deposit more money than the credit max: $" + creditMax);
+                System.out.print("Input a valid amount: ");
+                amount = scanner.nextDouble();
+                amount = validateAmount(amount, scanner, account);
+            }
+        }
+
+        account.setBalance(account.getBalance() + amount);
+        System.out.println("New " + account.getAccountType() + " account balance: $" + account.getBalance());
+
+        String name = customer.getFirstName() + " " + customer.getLastName();
+        String accountTitle = account.getAccountType() + "-" + account.getAccountNum();
+        Log.logEntries(name + " made a deposit on " + accountTitle + ". " + name + "'s new balance for " + accountTitle + " is " + account.getBalance());
+
     }
 
     public static void makeWithdrawal(Customer customer, Scanner scanner) {
