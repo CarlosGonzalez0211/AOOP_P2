@@ -26,6 +26,8 @@ public class Customer extends Person {
     /** An array of all accounts associated with this customer (credit, checking, savings). */
     private Account[] accounts;
 
+    public static HashMap<String, Customer> [] userMaps = PopulationHashmap.readFile();
+    public static HashMap<String, Customer> nameMap = userMaps[1];
 
     /**
      * This constructor constructs a Customer object with the specified personal information and associated accounts.
@@ -124,29 +126,6 @@ public class Customer extends Person {
                 System.out.println("Input valid choice. 1 to 3:");
             }
         }
-
-        System.out.print("Input amount to deposit: ");
-        double amount = scanner.nextDouble();
-        amount = validateAmount(amount, scanner);
-       
-        if (account == customer.getCreditAccount()) {
-            double creditMax = Math.abs(customer.getCreditAccount().getCreditMax());
-            double currentBalance = account.getBalance();
-
-            while (currentBalance + amount > creditMax) {
-                System.out.println("You cannot deposit more money than the credit max: $" + creditMax);
-                System.out.print("Input a valid amount: ");
-                amount = scanner.nextDouble();
-                amount = validateAmount(amount, scanner);
-            }
-        }
-        
-        account.setBalance(account.getBalance() + amount);
-        System.out.println("New " + account.getAccountType() + " account balance: $" + account.getBalance());
-
-        String name = customer.getFirstName() + " " + customer.getLastName();
-        String accountTitle = account.getAccountType() + "-" + account.getAccountNum();
-        Log.logEntries(name + " made a deposit on " + accountTitle + ". " + name + "'s new balance for " + accountTitle + " is " + account.getBalance());
     }
 
     public static void makeWithdrawal(Customer customer, Scanner scanner) {
@@ -239,98 +218,237 @@ public class Customer extends Person {
     
     
     public static void paySomeone(Customer customer, Scanner scanner, HashMap<String, Customer> customerMap) {
-    System.out.println("Which account would you like to withdraw from?");
-    RunBank.menuTypesAccount();
-    Account accountFrom = null;
-    System.out.print("Enter your choice (1 to 3): ");
-    
-    while (accountFrom == null) {
-        String choice = scanner.next().trim();
-        accountFrom = RunBank.getAccountByChoice(customer, choice);
+        System.out.println("Which account would you like to withdraw from?");
+        RunBank.menuTypesAccount();
+        Account accountFrom = null;
+        System.out.print("Enter your choice (1 to 3): ");
+        
+        while (accountFrom == null) {
+            String choice = scanner.next().trim();
+            accountFrom = RunBank.getAccountByChoice(customer, choice);
 
-        if (accountFrom == null) {
-            System.out.println("Invalid choice. Please enter 1, 2, or 3.");
+            if (accountFrom == null) {
+                System.out.println("Invalid choice. Please enter 1, 2, or 3.");
+            }
         }
-    }
 
-    // Step 2: Input the amount to withdraw, with checks for credit limits if necessary
-    double amount = withdrawMoney(accountFrom, scanner);
+        // Step 2: Input the amount to withdraw, with checks for credit limits if necessary
+        double amount = withdrawMoney(accountFrom, scanner);
 
-    // Step 3: Input the recipient's name
-    System.out.print("Enter the full name of the recipient: ");
-    scanner.nextLine(); // Consume any leftover newline
-    String recipientName = scanner.nextLine().trim();
+        // Step 3: Input the recipient's name
+        System.out.print("Enter the full name of the recipient: ");
+        scanner.nextLine(); // Consume any leftover newline
+        String recipientName = scanner.nextLine().trim();
 
-    // Check if the recipient exists in the customer map
-    if (!customerMap.containsKey(recipientName)) {
-        System.out.println("Recipient not found. Payment canceled.");
-        return;
-    }
-
-    Customer recipient = customerMap.get(recipientName);
-    if (customer.getFirstName().equals(recipient.getFirstName()) && customer.getLastName().equals(recipient.getLastName())) {
-        System.out.println("You cannot pay yourself. Payment canceled.");
-        return;
-    }
-
-    // Choose the recipient's account to deposit into (Checking or Savings)
-    System.out.println("Which account would you like to pay into?");
-    RunBank.menuTypesAccount();
-    Account accountTo = null;
-    System.out.print("Enter your choice (1 or 2): ");
-
-    while (accountTo == null) {
-        String choice = scanner.next().trim();
-        accountTo = RunBank.getAccountByChoice(recipient, choice);
-
-        if (accountTo == null) {
-            System.out.println("Invalid choice. Please enter 1 or 2.");
+        // Check if the recipient exists in the customer map
+        if (!customerMap.containsKey(recipientName)) {
+            System.out.println("Recipient not found. Payment canceled.");
+            return;
         }
-    }
 
-    // Make the payment
-    accountFrom.setBalance(accountFrom.getBalance() - amount);
-    accountTo.setBalance(accountTo.getBalance() + amount);
+        Customer recipient = customerMap.get(recipientName);
+        if (customer.getFirstName().equals(recipient.getFirstName()) && customer.getLastName().equals(recipient.getLastName())) {
+            System.out.println("You cannot pay yourself. Payment canceled.");
+            return;
+        }
 
-    System.out.println("Payment successful!");
-    String name = customer.getFirstName() + " " + customer.getLastName();
-    Log.logEntries(name + " paid $" + amount + " to " + recipientName + " from " + accountFrom.getAccountType() + " account to " + accountTo.getAccountType() + " account.");
+        // Choose the recipient's account to deposit into (Checking or Savings)
+        System.out.println("Which account would you like to pay into?");
+        RunBank.menuTypesAccount();
+        Account accountTo = null;
+        System.out.print("Enter your choice (1 or 2): ");
+
+        while (accountTo == null) {
+            String choice = scanner.next().trim();
+            accountTo = RunBank.getAccountByChoice(recipient, choice);
+
+            if (accountTo == null) {
+                System.out.println("Invalid choice. Please enter 1 or 2.");
+            }
+        }
+
+        // Make the payment
+        accountFrom.setBalance(accountFrom.getBalance() - amount);
+        accountTo.setBalance(accountTo.getBalance() + amount);
+
+        System.out.println("Payment successful!");
+        String name = customer.getFirstName() + " " + customer.getLastName();
+        Log.logEntries(name + " paid $" + amount + " to " + recipientName + " from " + accountFrom.getAccountType() + " account to " + accountTo.getAccountType() + " account.");
 }
 
     private static double withdrawMoney(Account account, Scanner scanner) {
         System.out.print("Input amount to withdraw: ");
         double amount = scanner.nextDouble();
-        amount = validateAmount(amount, scanner);
+        amount = validateAmount(amount, scanner, account);
     
         // Check for overdraft or balance limits
-        if (account instanceof Credit) {
+        if (account.getAccountType().equals("Credit")) { 
             Credit creditAccount = (Credit) account;
             double maxCreditAvailable = Math.abs(creditAccount.getCreditMax()) - creditAccount.getBalance();
     
             while (amount > maxCreditAvailable) {
                 System.out.println("Amount exceeds available credit: $" + maxCreditAvailable);
                 System.out.print("Input a valid amount: ");
-                amount = scanner.nextDouble();
-                amount = validateAmount(amount, scanner);
-            }
-        } else {
-            while (amount > account.getBalance()) {
-                System.out.println("Amount exceeds account balance: $" + account.getBalance());
-                System.out.print("Input a valid amount: ");
-                amount = scanner.nextDouble();
-                amount = validateAmount(amount, scanner);
+        //Works to validate amount (negative amounts)
             }
         }
-        return amount;
+        return amount; //PENDING
     }
-    
-    //Works to validate amount (negative amounts)
-    private static double validateAmount(double amount, Scanner scanner){
+
+    private static double validateAmount(double amount, Scanner scanner, Account account){
+        
         while (amount <= 0){
             System.out.print("Input valid amount, not negative amounts: ");
             amount = scanner.nextDouble();
 
         }
+
+        while (amount > account.getBalance()) {
+            System.out.println("Amount exceeds account balance: $" + account.getBalance());
+            System.out.print("Input a valid amount: ");
+            amount = scanner.nextDouble();
+            amount = validateAmount(amount, scanner, account);
+        }
+
         return amount;
+    }
+
+    public static void paySomeoneTransaction(String fromUser, String toUser, String fromAccount, String toAccount, double amount){
+        /*
+            * 1. Check if its a valid account (from and to)
+            * 2. Check if amount is valid
+            * 3. Perform the action.
+            * 4. For each problem, sout what went wrong and why
+            * 
+            */
+        Customer payer;
+        Customer payee;
+
+        if (!nameMap.containsKey(fromUser)){
+            System.out.println("Failed transaction: user " + fromUser + " does not exist.");
+            return;
+        }else{
+            payer = nameMap.get(fromUser);
+        }
+
+        if (!nameMap.containsKey(toUser)){
+            System.out.println("Failed transaction: user " + toUser + " does not exist.");
+            return;
+        }else{
+            payee = nameMap.get(toUser);
+        }
+
+        Account payerAccount = accountTypeTransaction(payer, fromAccount);
+        Account payeeAccount = accountTypeTransaction(payee, toAccount);
+
+        if(amount <= 0 || amount > payerAccount.getBalance()){
+            System.out.println("Failed transaction: amount is less than 0 or more than the payer's account balance (" + payerAccount.getBalance() + ") ");
+        }else{
+            payerAccount.setBalance(payerAccount.getBalance() - amount);
+            payeeAccount.setBalance(payeeAccount.getBalance() + amount);
+            
+            System.out.println("Successful transaction! " + fromUser + " paid $" + amount + " to " + toUser + " from " + payerAccount.getAccountType() + " account to " + payeeAccount.getAccountType() + " account.");
+        }
+
+        }
+
+    private static Account accountTypeTransaction(Customer user, String accountType){
+        switch (accountType) {
+            case "Credit":
+                return user.getCreditAccount();
+            case "Checking":
+                return user.getCheckingAccount();
+            case "Savings":
+                return user.getSavingAccount();
+            default:
+                throw new AssertionError();
+        }
+    }
+
+    public static void makeTransferTransaction(String fromUser, String toUser, String fromAccount, String toAccount, double amount){
+        //Check if the username is the same o
+        if(fromAccount.equals(toAccount)){
+            System.out.println("Transaction failed: user cannot transfer within the same account type.");
+            return;
+        }
+
+        Customer payer;
+        Customer payee;
+
+        if (!nameMap.containsKey(fromUser)){
+            System.out.println("Failed transaction: user " + fromUser + " does not exist.");
+            return;
+        }else{
+            payer = nameMap.get(fromUser);
+        }
+
+        if (!nameMap.containsKey(toUser)){
+            System.out.println("Failed transaction: user " + toUser + " does not exist.");
+            return;
+        }else{
+            payee = nameMap.get(toUser);
+        }
+
+        Account payerAccount = accountTypeTransaction(payer, fromAccount);
+        Account payeeAccount = accountTypeTransaction(payee, toAccount);
+
+        if(amount <= 0 || amount > payerAccount.getBalance()){
+            System.out.println("Failed transaction: amount is less than 0 or more than the payer's account balance (" + payerAccount.getBalance() + ") ");
+            return;
+        }else{
+            payerAccount.setBalance(payerAccount.getBalance() - amount);
+            payeeAccount.setBalance(payerAccount.getBalance() + amount);
+            System.out.println("Successful Transaction! " + fromUser + " transferred: $" + amount + " from " + payerAccount.getAccountType() + " account to " + payeeAccount.getAccountType() + " account");
+
+            
+        }
+    }
+
+    public static void depositsTransaction(String toUser, String toAccount, double amount){
+        if(!nameMap.containsKey(toUser)){
+            System.out.println("Transaction failed: no user with that name.");
+        }
+
+        Customer user = nameMap.get(toUser);
+        Account userAccount = accountTypeTransaction(user, toAccount);
+
+        if(amount <= 0 || amount > userAccount.getBalance()){
+            System.out.println("Failed transaction: amount is less than 0 or more than the payer's account balance (" + userAccount.getBalance() + ") ");
+            return;
+        }
+
+        userAccount.setBalance(userAccount.getBalance() + amount);
+        System.out.println("Successful Transaction! $" + amount + " has been deposited into " + toUser + " 's " + toAccount);
+
+    }
+
+    public static void withdrawTransaction(String fromUser, String fromAccount, double amount){
+        if(!nameMap.containsKey(fromUser)){
+            System.out.println("Transaction failed: no user with that name.");
+        }
+
+        Customer user = nameMap.get(fromUser);
+        Account userAccount = accountTypeTransaction(user, fromAccount);
+
+        if(amount <= 0 || amount > userAccount.getBalance()){
+            System.out.println("Failed transaction: amount is less than 0 or more than the payer's account balance (" + userAccount.getBalance() + ") ");
+            return;
+        }
+
+        userAccount.setBalance(userAccount.getBalance() + amount);
+        System.out.println("Successful Transaction! $" + amount + " has been deposited into " + fromUser + " 's " + fromAccount);
+
+    }
+
+    public static void inquireBalancaTransaction(String fromUser, String fromAccount){
+        if(!nameMap.containsKey(fromUser)){
+            System.out.println("Transaction failed: no user with that name.");
+        }
+
+        Customer user = nameMap.get(fromUser);
+        Account userAccount = accountTypeTransaction(user, fromAccount);
+
+        System.out.println("Successful transaction! " + fromUser + " has inquired about" + fromAccount +" 's balance: " + userAccount.getBalance());
+
     }
 }

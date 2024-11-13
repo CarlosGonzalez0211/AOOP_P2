@@ -1,10 +1,11 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Random;
 import java.util.Scanner;
-import java.util.Set;
+
 /**
  * The RunBank class serves as the entry point for the El Paso Miners Bank application.
  * enables users to perform banking operations.
@@ -34,11 +35,12 @@ public class RunBank {
      *
      * @param args command-line arguments (not used)
      */
+
+    public static HashMap<String, Customer>[] customersMap = PopulationHashmap.readFile(); 
     public static void main(String[] args) {
         // Load customer data from file into two HashMaps (ID-based and name-based as keys)
         // PopulationHashmap customerMap = new PopulationHashmap();
-        
-        HashMap<String, Customer>[] customersMap = PopulationHashmap.readFile(); //llamar a la clase
+        //llamar a la clase
 
         try (Scanner scanner = new Scanner(System.in)) {
             System.out.println("WELCOME TO EL PASO MINERS BANK");
@@ -284,6 +286,9 @@ public class RunBank {
             System.out.println("A. Inquire account by name.");
             System.out.println("B. Inquire account by type/number.");
             System.out.println("C. Add new bank user.");
+            System.out.println("D. Transaction reader.");
+            System.out.println("E. Generate bank statement.");
+
             System.out.print("Please enter your choice:  ");
             userInput = scanner.nextLine();
 
@@ -295,6 +300,11 @@ public class RunBank {
                 break;
             }else if(userInput.equalsIgnoreCase("C")){
                 addNewUser(scanner, customersMaps);
+            }else if(userInput.equalsIgnoreCase("D")){
+                transactionReader();
+                break;
+            }else if(userInput.equalsIgnoreCase("E")) {
+                generateBankStatement();
             }else{
                 System.out.println("Invalid choice. Input a valid option (A/B): ");
             }
@@ -481,126 +491,145 @@ public class RunBank {
 
         return account;
     }
-    private static Set<Integer> existingAccountNumbers = new HashSet<>();
 
     private static void addNewUser(Scanner scanner, HashMap<String, Customer>[] customersMaps) {
         // Increment lastUserId for the new user (method located in Person class)
         int maxId = Person.getMaxId() + 1; 
-    String newUserId = String.valueOf(maxId);
+        String newUserId = String.valueOf(maxId);
 
-    // User information
-    System.out.print("Enter First Name: ");
-    String firstName = scanner.nextLine();
+        // user information
+        System.out.print("Enter First Name: ");
+        String firstName = scanner.nextLine();
 
-    System.out.print("Enter Last Name: ");
-    String lastName = scanner.nextLine();
+        System.out.print("Enter Last Name: ");
+        String lastName = scanner.nextLine();
 
-    System.out.print("Enter Date of Birth (YYYY-MM-DD): ");
-    String dateOfBirth = scanner.nextLine();
+        System.out.print("Enter Date of Birth (YYYY-MM-DD): ");
+        String dateOfBirth = scanner.nextLine();
 
-    System.out.print("Enter Address: ");
-    String address = scanner.nextLine();
+        System.out.print("Enter Address: ");
+        String address = scanner.nextLine();
 
-    System.out.print("Enter City: ");
-    String city = scanner.nextLine();
+        System.out.print("Enter City: ");
+        String city = scanner.nextLine();
 
-    System.out.print("Enter State: ");
-    String state = scanner.nextLine();
+        System.out.print("Enter State: ");
+        String state = scanner.nextLine();
 
-    System.out.print("Enter Zip Code: ");
-    String zip = scanner.nextLine();
+        System.out.print("Enter Zip Code: ");
+        String zip = scanner.nextLine();
 
-    System.out.print("Enter Phone Number: ");
-    String phoneNumber = scanner.nextLine();
+        System.out.print("Enter Phone Number: ");
+        String phoneNumber = scanner.nextLine();
 
-    //Generate account numbers for accounts
-    int checkingAccountNumber = generateAccountNumber();
-    int creditAccountNumber = generateAccountNumber();
-    int savingsAccountNumber = generateAccountNumber();
-
-    System.out.println("Checking Account Number: " + checkingAccountNumber);
-    System.out.println("Credit Account Number: " + creditAccountNumber);
-    System.out.println("Savings Account Number: " + savingsAccountNumber);
-
-    //Generate random credit score and determine credit limit
-    Random rand = new Random();
-    int creditScore = rand.nextInt(551) + 300; // Random number between 300 and 850
-    System.out.println("Random Credit Score: " + creditScore);
-    double creditLimit = determineCreditLimit(creditScore);
-    System.out.println("Credit Limit: " + creditLimit);
-
-    //Create a temporary newPerson object without accounts
-    Person newPerson = new Person(newUserId, firstName, lastName, dateOfBirth, address, city, state, zip, phoneNumber);
-
-    //Create Account objects with newPerson as the account holder
-    Account checkingAccount = new Checking(checkingAccountNumber, 0.0, newPerson);
-    Account savingsAccount = new Saving(savingsAccountNumber, 0.0, newPerson);
-    Account creditAccount = new Credit(creditAccountNumber, creditLimit, creditLimit, (Person) newPerson);
-
-    // Store accounts in an array
-    Account[] accounts = {checkingAccount, savingsAccount, creditAccount};
-
-    Customer newCustomer = new Customer(newUserId, firstName, lastName, dateOfBirth, address, phoneNumber, accounts);
-
-    // Set the accounts array in newCustomer
-    newCustomer.setAccounts(accounts);
-
-    // Add the new customer to the customers map
-    customersMaps[0].put(newUserId, newCustomer);
-
-    // Print out the full details of the new customer
-    System.out.println("\nNew Customer Added: ");
-    System.out.println("----------------------");
-    System.out.println("User ID: " + newUserId);
-    System.out.println("Name: " + firstName + " " + lastName);
-    System.out.println("Date of Birth: " + dateOfBirth);
-    System.out.println("Address: " + address);
-    System.out.println("City: " + city);
-    System.out.println("State: " + state);
-    System.out.println("Zip Code: " + zip);
-    System.out.println("Phone Number: " + phoneNumber);
-    System.out.println(" ");
-    System.out.println("Checking Account Number: " + checkingAccountNumber);
-    System.out.println("Credit Account Number: " + creditAccountNumber);
-    System.out.println("Savings Account Number: " + savingsAccountNumber);
-    System.out.println("Credit Score: " + creditScore);
-    System.out.println("Credit Limit: " + creditLimit);
-    System.out.println("----------------------");
-    System.out.println(" ");
-
-}
-private static double determineCreditLimit(int creditScore) {
-    Random random = new Random();
-    double creditLimit = 0;
-
-    if (creditScore <= 580) {
-        creditLimit = 100 + (random.nextDouble() * 600); // $100 - $699
-    } else if (creditScore <= 669) {
-        creditLimit = 700 + (random.nextDouble() * 4300); // $700 - $4999
-    } else if (creditScore <= 739) {
-        creditLimit = 5000 + (random.nextDouble() * 2500); // $5000 - $7499
-    } else if (creditScore <= 799) {
-        creditLimit = 7500 + (random.nextDouble() * 8500); // $7500 - $15999
-    } else {
-        creditLimit = 16000 + (random.nextDouble() * 9000); // $16000 - $25000
-    }
-
-    // Round to the nearest whole number before returning
-    return Math.round(creditLimit);
-}
-    //private static Set<Integer> existingAccountNumbers = new HashSet<>();
-    private static int generateAccountNumber(){
-        Random rand = new Random();
-        int accountNumber;
-        do {
-            accountNumber = 100000 + rand.nextInt(900000); // Generate a 6-digit account number
-        } while (existingAccountNumbers.contains(accountNumber)); // Check for uniqueness
+        //System.out.println(maxId); 
         
-        existingAccountNumbers.add(accountNumber); // Add to set of existing account numbers
-        return accountNumber;
-    }
+        
+        // create new account numbers for accounts savingsAccountNumber = generateAccountNumber();
+        int checkingAccountNumber = generateAccountNumber();
+        int creditAccountNumber = generateAccountNumber();
+        int savingsAccountNumber = generateAccountNumber();
+
+        System.out.println(checkingAccountNumber);
+        System.out.println(creditAccountNumber);
+        System.out.println(savingsAccountNumber);
+        //Credit Score part
+
     }
 
-    
-    
+    private static int generateAccountNumber(){
+        Random random = new Random();
+        int number = random.nextInt(9000); 
+        
+        //While the random number is not 
+        while(Account.getSetAccountsNumbers().contains(random)){
+            System.out.println(number);
+            number = random.nextInt(9000); 
+        }// Generates a number between 0 and 6000 (inclusive)
+        Account.addIdToAccountSet(number); //Add new number to account id's set.
+        return number;
+    }
 
+    private static void transactionReader() {
+        try {
+            Scanner user = new Scanner(System.in);
+            Scanner scanner = new Scanner(new File("Transactions.csv"));
+            String infoHeaders = scanner.nextLine();
+            String[] headers = infoHeaders.split(",");
+            System.out.println(headers.length);
+
+            while (scanner.hasNextLine()){
+
+                String[] informationLine = scanner.nextLine().split(",");
+                for (int i = 0; i < informationLine.length; i++) {
+                    if (informationLine[i].trim().isEmpty()) {
+                        informationLine[i] = null; // Replace with null or any default value
+                    }
+                }
+                String fromFirstName = (informationLine.length > 0) ? informationLine[0] : null;
+                String fromLastName = (informationLine.length > 1) ? informationLine[1] : null;
+                String fromWhere = (informationLine.length > 2) ? informationLine[2] : null;
+                String action = (informationLine.length > 3) ? informationLine[3] : null;
+                String toFirstName = (informationLine.length > 4) ? informationLine[4] : null;
+                String toLastName = (informationLine.length > 5) ? informationLine[5] : null;
+                String toWhere = (informationLine.length > 6) ? informationLine[6] : null;
+                double amount = (informationLine.length > 7 && informationLine[7] != null) ? Double.parseDouble(informationLine[7]) : 0.0; 
+
+                String fromFullName = fromFirstName + " " + fromLastName;
+                String toFullName = toFirstName + " " + toLastName;
+                
+                switch (action){
+                    case "inquires" ->{
+                        Customer.inquireBalancaTransaction(fromFullName, fromWhere);
+                        break;
+                    }
+                    case "deposits" ->{
+                        Customer.depositsTransaction(toFullName, toWhere, amount); 
+                        break;
+                    }
+                    case "withdraws" ->{
+                        Customer.withdrawTransaction(fromFullName, fromWhere, amount);
+                        break;
+                    }
+                    case "transfers" ->{
+                        Customer.makeTransferTransaction(fromFullName, toFullName, fromWhere, toWhere, amount);
+                        break;
+                    }
+
+                    case "pays" ->{
+                        Customer.paySomeoneTransaction(fromFullName, toFullName, fromWhere, toWhere, amount);
+                        break;
+                    }
+                    default ->{
+                        break;
+                    }
+                }
+            }
+            return;
+        } catch (FileNotFoundException e) {
+            System.out.println("Transactions file not found.");
+        }
+    }
+
+    private static void generateBankStatement(){
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            try {
+                System.out.print("Please enter the user's name to generate a bank statement: ");
+                String name = scanner.nextLine().trim();
+    
+                Customer customer = customersMap[1].get(name);
+    
+                if (customer == null) {
+                    System.out.println("Customer not found. Please enter a valid customer.");
+                }else{
+                    
+                }
+
+            } catch (NoSuchElementException e) {
+                System.out.println("Input error. Please try again.");
+            }
+        }
+        
+    }
+}
