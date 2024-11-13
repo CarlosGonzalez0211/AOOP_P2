@@ -54,23 +54,6 @@ public class Customer extends Person {
         super(idNumber, firstName, lastName, dateOfBirth, address, phoneNumber);
         this.accounts = accounts;
     }
-<<<<<<< HEAD
-
-    /**
-     * Constructs a new Customer object with the specified personal and account information.
-     *
-     * @param idNumber     the unique identifier for the customer
-     * @param firstName    the first name of the customer
-     * @param lastName     the last name of the customer
-     * @param dateOfBirth  the date of birth of the customer
-     * @param address      the address of the customer
-     * @param city         the city where the customer resides
-     * @param state        the state where the customer resides
-     * @param zip          the zip code of the customer's address
-     * @param phoneNumber  the phone number of the customer
-     * @param accounts     an array of Account objects associated with the customer
-     */
-=======
     /**
     * Constructs a new Customer object with the specified details.
     * This constructor initializes a customer with personal information and a list of associated accounts.
@@ -86,7 +69,6 @@ public class Customer extends Person {
     * @param phoneNumber the phone number of the customer
     * @param accounts an array of Account objects representing the customer's accounts (credit, checking, savings)
     */
->>>>>>> 0535ddc5ae6b2d95aa1a8cc7764d8c6ea4a78c93
     public Customer(String idNumber, String firstName, String lastName, String dateOfBirth, String address, String city, String state, String zip,
                     String phoneNumber, Account[] accounts) {
         super(idNumber, firstName, lastName, dateOfBirth, address, city, state, zip, phoneNumber);
@@ -203,20 +185,12 @@ public class Customer extends Person {
     }
 
     /**
-<<<<<<< HEAD
-     * Retrieves and displays the balances for all of a customer's accounts: checking, savings, and credit.
-     * Logs the balance inquiry action to the system log and the user's transaction log.
-     *
-     * @param customer the Customer object whose account balances are to be inquired
-     */
-=======
     * This method allows a customer to make a withdrawal from one of their accounts.
     * 
      *
     * @param customer the customer from whose account the withdrawal will be made
     * @param scanner the Scanner object used to capture user input for account selection and withdrawal amount
     */
->>>>>>> 0535ddc5ae6b2d95aa1a8cc7764d8c6ea4a78c93
     public static void makeWithdrawal(Customer customer, Scanner scanner) {
         System.out.println("Which account would you like to make a withdrawal from?");
         RunBank.menuTypesAccount();
@@ -245,17 +219,6 @@ public class Customer extends Person {
         Log.transactions.add(message);
         Log.logUserTransaction(customer.getFirstName() + " " + customer.getLastName(), message);
     }
-<<<<<<< HEAD
-
-    /**
-     * Facilitates the transfer of funds between two of a customer's accounts.
-     * The customer selects the source account to withdraw from and the destination account to transfer to.
-     * Validates user input, ensures compliance with credit account limits, and logs the transfer.
-     *
-     * @param customer the Customer object performing the transfer
-     * @param scanner  the Scanner object used to capture user input
-     */
-=======
     /**
      * This method allows a customer to transfer money between two of their accounts.
     * The user is prompted to select the source and destination accounts.
@@ -266,7 +229,6 @@ public class Customer extends Person {
     * @param customer the customer who is making the transfer
     * @param scanner the Scanner object used to capture user input for account selections and transfer amount
     */
->>>>>>> 0535ddc5ae6b2d95aa1a8cc7764d8c6ea4a78c93
     public static void makeTransfer(Customer customer, Scanner scanner) {
         System.out.println("Choose account to withdraw from:");
         RunBank.menuTypesAccount();
@@ -384,10 +346,6 @@ public class Customer extends Person {
             }
         }
 
-<<<<<<< HEAD
-        
-=======
->>>>>>> 0535ddc5ae6b2d95aa1a8cc7764d8c6ea4a78c93
         accountFrom.setBalance(accountFrom.getBalance() - amount);
         accountTo.setBalance(accountTo.getBalance() + amount);
 
@@ -398,21 +356,7 @@ public class Customer extends Person {
         Log.logEntries(message);
         Log.transactions.add(message);
         Log.logUserTransaction(name, message);
-
-<<<<<<< HEAD
     }
-
-    /**
-     * Facilitates a payment from one customer's account to another customer's account.
-     * The method prompts the customer to select an account to withdraw from and to specify
-     * the recipient and their account for depositing the payment. It validates the recipient's existence
-     * and ensures that the customer cannot make a payment to themselves.
-     *
-     * @param customer     the Customer object performing the payment
-     * @param scanner      the Scanner object used to capture user input
-     * @param customerMap  a HashMap containing customer data, used to validate the recipient's existence
-     */
-=======
     /**
     * This method prompts the user to enter an amount to withdraw from the specified account. 
     * It then validates the withdrawal amount to ensure it is within acceptable limits. 
@@ -423,7 +367,6 @@ public class Customer extends Person {
     * @param scanner the Scanner object used to capture user input for the withdrawal amount
     * @return the validated withdrawal amount
     */ 
->>>>>>> 0535ddc5ae6b2d95aa1a8cc7764d8c6ea4a78c93
     private static double withdrawMoney(Account account, Scanner scanner) {
         System.out.print("Input amount to withdraw: ");
         double amount = scanner.nextDouble();
@@ -436,26 +379,11 @@ public class Customer extends Person {
             while (amount > maxCreditAvailable) {
                 System.out.println("Amount exceeds available credit: $" + maxCreditAvailable);
                 System.out.print("Input a valid amount: ");
-<<<<<<< HEAD
-        
-=======
        
->>>>>>> 0535ddc5ae6b2d95aa1a8cc7764d8c6ea4a78c93
             }
         }
         return amount; 
     }
-<<<<<<< HEAD
-    /**
-     * Validates the input amount to ensure it is a positive value and does not exceed the balance of the specified account.
-     * Prompts the user to enter a new amount if the input is invalid, such as being negative or exceeding the account balance.
-     *
-     * @param amount   the initial amount to validate
-     * @param scanner  the Scanner object used to capture user input
-     * @param account  the Account object against which the balance validation is performed
-     * @return the validated amount that is greater than zero and within the account's balance
-     */
-=======
 
     /**
     * This method validates the withdrawal amount by ensuring it is positive and does not exceed the account balance.
@@ -467,7 +395,6 @@ public class Customer extends Person {
     * @param account the account from which the withdrawal is to be made, used to check the balance
     * @return the validated withdrawal amount
     */
->>>>>>> 0535ddc5ae6b2d95aa1a8cc7764d8c6ea4a78c93
     private static double validateAmount(double amount, Scanner scanner, Account account){
         
         while (amount <= 0){
@@ -487,18 +414,6 @@ public class Customer extends Person {
     }
 
     /**
-<<<<<<< HEAD
-     * Facilitates a transaction where one user pays another user by transferring funds between specified accounts.
-     * The method checks for the existence of both users, validates the amount to ensure it is positive
-     * and does not exceed the payer's account balance, and then performs the transfer if all conditions are met.
-     *
-     * @param fromUser    the name of the user initiating the payment
-     * @param toUser      the name of the recipient user
-     * @param fromAccount the type of account from which the funds will be withdrawn (e.g., Checking, Savings)
-     * @param toAccount   the type of account to which the funds will be deposited
-     * @param amount      the amount of money to be transferred
-     */
-=======
     * This method handles a transaction where one user (payer) pays another user (payee) a specified amount 
     * from one account to another. The method performs the following actions:
     * <ul>
@@ -514,7 +429,6 @@ public class Customer extends Person {
     * @param toAccount the type of the account into which the payee is receiving money
     * @param amount the amount of money to be transferred from the payer's account to the payee's account
     */
->>>>>>> 0535ddc5ae6b2d95aa1a8cc7764d8c6ea4a78c93
     public static void paySomeoneTransaction(String fromUser, String toUser, String fromAccount, String toAccount, double amount){
         Customer payer;
         Customer payee;
@@ -549,16 +463,6 @@ public class Customer extends Person {
 
     }
 
-<<<<<<< HEAD
-    /**
-     * Retrieves the specified account of the given customer based on the account type.
-     *
-     * @param user        the Customer whose account is to be retrieved
-     * @param accountType the type of the account (e.g., "Credit", "Checking", "Savings")
-     * @return the Account object corresponding to the specified account type
-     * @throws AssertionError if the account type is not recognized
-     */
-=======
         /**
     * This method returns the account of the specified type for a given user (Customer).
     * It retrieves the appropriate account (Credit, Checking, or Savings) based on the input account type.
@@ -568,7 +472,6 @@ public class Customer extends Person {
      * @return the account of the specified type
      * @throws AssertionError if an invalid account type is provided (not "Credit", "Checking", or "Savings")
     */
->>>>>>> 0535ddc5ae6b2d95aa1a8cc7764d8c6ea4a78c93
     private static Account accountTypeTransaction(Customer user, String accountType){
         switch (accountType) {
             case "Credit":
@@ -583,17 +486,6 @@ public class Customer extends Person {
     }
 
     /**
-<<<<<<< HEAD
-     * Facilitates a transfer transaction between two customers' accounts.
-     * Validates user existence and ensures that the amount is within the payer's balance.
-     *
-     * @param fromUser    the name of the user initiating the transfer
-     * @param toUser      the name of the user receiving the transfer
-     * @param fromAccount the type of account from which the funds will be transferred
-     * @param toAccount   the type of account to which the funds will be transferred
-     * @param amount      the amount to be transferred
-     */
-=======
     * Processes a transfer transaction between two users from one account to another.
     * 
     * This method performs a transfer of funds from one user's account to another user's
@@ -607,7 +499,6 @@ public class Customer extends Person {
     * @param toAccount The account type to deposit into (e.g., "Credit", "Checking", or "Savings").
     * @param amount The amount to transfer.
     */
->>>>>>> 0535ddc5ae6b2d95aa1a8cc7764d8c6ea4a78c93
     public static void makeTransferTransaction(String fromUser, String toUser, String fromAccount, String toAccount, double amount){
         //Check if the username is the same o
         if(fromAccount.equals(toAccount)){
@@ -651,14 +542,6 @@ public class Customer extends Person {
     }
 
     /**
-<<<<<<< HEAD
-     * Facilitates a deposit transaction into a customer's account.
-     *
-     * @param toUser    the name of the user receiving the deposit
-     * @param toAccount the type of account to deposit into (e.g., "Checking", "Savings")
-     * @param amount    the amount to be deposited
-     */
-=======
      * Processes a deposit transaction for a user's account.
      * 
     * This method handles the deposit of funds into a specific account of a user.
@@ -670,7 +553,6 @@ public class Customer extends Person {
     * @param toAccount The account type to deposit into (e.g., "Credit", "Checking", or "Savings").
     * @param amount The amount to deposit into the account.
     */
->>>>>>> 0535ddc5ae6b2d95aa1a8cc7764d8c6ea4a78c93
     public static void depositsTransaction(String toUser, String toAccount, double amount){
         if(!nameMap.containsKey(toUser)){
             Log.logEntries("Transaction failed: no user with that name.");
@@ -687,15 +569,6 @@ public class Customer extends Person {
     }
 
     /**
-<<<<<<< HEAD
-     * Facilitates a withdrawal transaction from a customer's account.
-     * Ensures that the amount is within the user's account balance.
-     *
-     * @param fromUser    the name of the user making the withdrawal
-     * @param fromAccount the type of account to withdraw from (e.g., "Checking", "Savings")
-     * @param amount      the amount to be withdrawn
-     */
-=======
     * Processes a withdrawal transaction from a user's account.
     * 
     * This method handles the withdrawal of funds from a specific account of a user.
@@ -708,7 +581,6 @@ public class Customer extends Person {
     * @param fromAccount The account type to withdraw from (e.g., "Credit", "Checking", or "Savings").
     * @param amount The amount to withdraw from the account.
     */
->>>>>>> 0535ddc5ae6b2d95aa1a8cc7764d8c6ea4a78c93
     public static void withdrawTransaction(String fromUser, String fromAccount, double amount){
         if(!nameMap.containsKey(fromUser)){
             Log.logEntries("Transaction failed: no user with that name.");
@@ -731,13 +603,6 @@ public class Customer extends Person {
     }
 
     /**
-<<<<<<< HEAD
-     * Performs a balance inquiry for a customer's specified account and logs the transaction.
-     *
-     * @param fromUser    the name of the user making the inquiry
-     * @param fromAccount the type of account to inquire about (e.g., "Checking", "Savings")
-     */
-=======
     * Allows a user to inquire about the balance of a specific account.
     * 
     * This method handles the inquiry of a specific account balance for a given user.
@@ -747,7 +612,6 @@ public class Customer extends Person {
     * @param fromUser The username of the user making the inquiry.
     * @param fromAccount The account type to inquire about (e.g., "Credit", "Checking", or "Savings").
     */
->>>>>>> 0535ddc5ae6b2d95aa1a8cc7764d8c6ea4a78c93
     public static void inquireBalancaTransaction(String fromUser, String fromAccount){
         if(!nameMap.containsKey(fromUser)){
             Log.logEntries("Transaction failed: no user with that name.");

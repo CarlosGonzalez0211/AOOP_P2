@@ -1,5 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -39,12 +41,9 @@ public class RunBank {
      * @param args command-line arguments (not used)
      */
 
+    
     public static HashMap<String, Customer>[] customersMap = PopulationHashmap.readFile(); 
     public static void main(String[] args) {
-        // Load customer data from file into two HashMaps (ID-based and name-based as keys)
-        // PopulationHashmap customerMap = new PopulationHashmap();
-        //llamar a la clase
-
         try (Scanner scanner = new Scanner(System.in)) {
             System.out.println("WELCOME TO EL PASO MINERS BANK");
 
@@ -510,7 +509,7 @@ public class RunBank {
     private static void addNewUser(Scanner scanner, HashMap<String, Customer>[] customersMaps) {
         // Increment lastUserId for the new user (method located in Person class)
         int maxId = Person.getMaxId() + 1; 
-        String newUserId = String.valueOf(maxId);
+        String idNumber = String.valueOf(maxId);
 
         // user information
         System.out.print("Enter First Name: ");
@@ -544,10 +543,85 @@ public class RunBank {
         int creditAccountNumber = generateAccountNumber();
         int savingsAccountNumber = generateAccountNumber();
 
+        Random random = new Random();
+
+        double creditScore = generateRandomCreditScore();
+        double checkingBalance = 0.0;
+        double savingsBalance = 0.0;
+
+        
+        // Generate random credit limit within the range
+        double creditMax = determineCreditLimit(creditScore);
+
         System.out.println(checkingAccountNumber);
         System.out.println(creditAccountNumber);
         System.out.println(savingsAccountNumber);
 
+        Person newPerson = new Person(idNumber, firstName, lastName, dateOfBirth, address, phoneNumber);
+        Checking newChecking = new Checking(checkingAccountNumber, checkingBalance, newPerson);
+        Saving newSaving = new Saving(savingsAccountNumber, savingsBalance, newPerson);
+        Credit newCredit = new Credit(creditAccountNumber, creditScore, creditMax, newPerson);
+        Account[] newAccounts = {newChecking, newSaving, newCredit};
+
+        Customer newCustomer = new Customer(idNumber, firstName, lastName, dateOfBirth, address, phoneNumber, newAccounts);
+
+        customersMaps[0].put(idNumber, newCustomer);
+        customersMaps[1].put(firstName + " " + lastName, newCustomer);
+        appendCustomerToCSV(newCustomer);
+
+    }
+    
+    public static void appendCustomerToCSV(Customer customer) {
+        try (FileWriter fw = new FileWriter("BankUsers.csv", true);
+             PrintWriter writer = new PrintWriter(fw)) {
+    
+            // start the row with customer basic details
+            StringBuilder csvRow = new StringBuilder(String.join(",",
+                customer.getIdNumber(),
+                customer.getFirstName(),
+                customer.getLastName(),
+                customer.getDateOfBirth(),
+                customer.getAddress(),
+                customer.getPhoneNumber()
+            ));
+    
+            // loop through each account and append its details to the row, separated by commas
+            for (Account account : customer.getAccounts()) {
+                csvRow.append(","); // Separate accounts with commas
+                csvRow.append(account.getAccountNum()).append(",")
+                       .append(account.getAccountType()).append(",")
+                       .append(account.getBalance());
+            }
+    
+            // this would be writing the code all in one line like in the csv file
+            writer.println(csvRow.toString());
+    
+            System.out.println("Customer with all accounts added to CSV file successfully.");
+    
+        } catch (IOException e) {
+            System.err.println("Error writing to CSV file: " + e.getMessage());
+        }
+    }
+
+    private static int generateRandomCreditScore() {
+        Random random = new Random();
+        return 300 + random.nextInt(551); // Credit score between 300 and 850
+    }
+
+
+    private static double determineCreditLimit(double creditScore) {
+        Random random = new Random();
+        if (creditScore <= 580) {
+            return 100 + (random.nextDouble() * 600); // $100 - $699
+        } else if (creditScore <= 669) {
+            return 700 + (random.nextDouble() * 4300); // $700 - $4999
+        } else if (creditScore <= 739) {
+            return 5000 + (random.nextDouble() * 2500); // $5000 - $7499
+        } else if (creditScore <= 799) {
+            return 7500 + (random.nextDouble() * 8500); // $7500 - $15999
+        } else {
+            return 16000 + (random.nextDouble() * 9000); // $16000 - $25000
+        }
     }
 
     /**
