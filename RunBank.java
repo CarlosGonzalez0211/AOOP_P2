@@ -287,6 +287,7 @@ public class RunBank {
             System.out.println("B. Inquire account by type/number.");
             System.out.println("C. Add new bank user.");
             System.out.println("D. Transaction reader.");
+            System.out.println("E. Generate bank statement.");
 
             System.out.print("Please enter your choice:  ");
             userInput = scanner.nextLine();
@@ -302,6 +303,8 @@ public class RunBank {
             }else if(userInput.equalsIgnoreCase("D")){
                 transactionReader();
                 break;
+            }else if(userInput.equalsIgnoreCase("E")) {
+                generateBankStatement();
             }else{
                 System.out.println("Invalid choice. Input a valid option (A/B): ");
             }
@@ -548,12 +551,6 @@ public class RunBank {
     }
 
     private static void transactionReader() {
-        /*
-         * 1. I need to store in a string array all the columns (From, bla)
-         * 2. Make action amount an integer
-         * 3. Switch case of all methods.
-         */
-
         try {
             Scanner user = new Scanner(System.in);
             Scanner scanner = new Scanner(new File("Transactions.csv"));
@@ -612,5 +609,27 @@ public class RunBank {
         } catch (FileNotFoundException e) {
             System.out.println("Transactions file not found.");
         }
+    }
+
+    private static void generateBankStatement(){
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            try {
+                System.out.print("Please enter the user's name to generate a bank statement: ");
+                String name = scanner.nextLine().trim();
+    
+                Customer customer = customersMap[1].get(name);
+    
+                if (customer == null) {
+                    System.out.println("Customer not found. Please enter a valid customer.");
+                }else{
+                    
+                }
+
+            } catch (NoSuchElementException e) {
+                System.out.println("Input error. Please try again.");
+            }
+        }
+        
     }
 }
